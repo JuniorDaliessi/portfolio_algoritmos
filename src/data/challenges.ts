@@ -306,6 +306,122 @@ console.log(fibonacci(10)); // Deve retornar 55`,
             ]
           }
         ]
+      },
+      {
+        id: "dia1-desafio3",
+        title: "Lista de Tarefas Diárias",
+        versions: [
+          {
+            id: "dia1-desafio3-v1",
+            title: "Rotina Diária (Trabalho Noturno + Folga)",
+            statement: `<h2>DESAFIO 03: Monte sua lista de tarefas diárias</h2>
+                        <p>Vamos para um último desafio do dia! Esses desafios são apenas uma preparação para o que está por vir. Por mais bobo que pareça, é assim que você vai descobrir o que pra você é mais fácil e mais difícil de fazer.</p>
+                        <p>Por isso é preciso colocar a mão na massa e testar suas habilidades.</p>
+                        <p>Crie uma lista numerada das tarefas que você costuma fazer no dia a dia. Crie a partir de um dia normal, pode ser algo como: acordar, tomar café, fazer exercício, tomar banho, se vestir, ir ao trabalho, ou ir estudar, etc... Faça isso até que a última atividade seja você ir dormir.</p>
+                        <p>Tente ser o mais detalhado possível. A ideia, mais uma vez, é mostrar a sua habilidade para ser mais específico possível. Depois que terminar observe cada item da lista e tente imaginar como seria se cada um desses itens fosse um programa de computador que pudesse ser elaborado de forma individual.</p>`,
+            code: `// Encapsular em uma função anônima autoexecutável (opcional, para organizar)
+(function() {
+  // =========================================================
+  // DESAFIO 3 - Rotina Diária (Trabalho Noturno + Folga)
+  // =========================================================
+  const desafio3 = [
+    "Acordo às 12:20 com o despertador",
+    "Troco de roupa, pego o capacete",
+    "Vou buscar meu filho na escola",
+    "Chego em casa, preparo o almoço",
+    "Almoço com meu filho",
+    "Tomo banho, troco de roupa",
+    "Vou para a academia",
+    "Volto para casa, tomo um pós-treino",
+    "Estudo e depois tomo outro banho",
+    "Coloco o uniforme, arrumo a mochila",
+    "Saio para o trabalho às 17:20",
+    "Chego no trabalho às 18:00",
+    "Trabalho por 12 horas noturnas (até 06:00)",
+    "Saio do trabalho às 06:00, chego em casa às 06:20",
+    "Acordo meu filho, preparo o café da manhã",
+    "Levo meu filho para a escola",
+    "Volto para casa, tomo um banho",
+    "Deito, tento assistir a uma série, mas durmo",
+    "Despertador toca às 12:20 novamente",
+    "Troco de roupa, pego o capacete, busco meu filho na escola",
+    "Chego em casa, preparo o almoço, almoço com meu filho",
+    "Tomo banho, troco de roupa, vou para academia",
+    "Volto para casa, tomo um pós-treino, tomo um banho",
+    "Percebo que é minha folga (escala 12x36)",
+    "Ligo a TV, assisto a uma série",
+    "Preparo a janta, janto com a família",
+    "Ajudo meu filho com a lição de casa",
+    "Jogo videogame com meu filho",
+    "Saio para dar uma volta, volto para casa",
+    "Ligo o computador, estudo até 3:00 da manhã",
+    "Como algo, escovo os dentes",
+    "Durmo até o celular despertar às 6:20 novamente"
+  ];
+
+  console.log("=== DESAFIO 3 - Rotina Diária (Trabalho + Folga) ===");
+  desafio3.forEach((acao, index) => {
+    console.log(\`\${index + 1}. \${acao}\`);
+  });
+
+})();`,
+            explanation: `<p>Este código demonstra como podemos representar uma rotina diária completa usando JavaScript, incluindo um dia de trabalho noturno e um dia de folga.</p>
+                        <p>Seguindo a mesma estrutura dos desafios anteriores, usamos uma função anônima autoexecutável (IIFE) para encapsular nosso código e manter a organização.</p>
+                        <p>O algoritmo utiliza um array para armazenar cada uma das 32 atividades da rotina diária, apresentando um ciclo completo de dois dias (trabalho e folga) em uma escala 12x36.</p>
+                        <p>Este exemplo mostra como podemos modelar comportamentos complexos do mundo real como sequências de passos em um algoritmo. Algumas observações importantes:</p>
+                        <ul>
+                            <li>O algoritmo mostra a linearidade do tempo, onde cada ação ocorre após a anterior</li>
+                            <li>Demonstra padrões repetitivos (acordar com despertador, buscar o filho, etc.)</li>
+                            <li>Inclui tomadas de decisão ("Percebo que é minha folga")</li>
+                            <li>Mostra como um ciclo se completa e recomeça (próximo despertar)</li>
+                        </ul>
+                        <p>Esta representação nos ajuda a entender que nossas rotinas diárias são, de fato, algoritmos que executamos repetidamente. Cada ação poderia ser ainda mais detalhada em "sub-rotinas" mais específicas, assim como fazemos ao decompor problemas complexos em programação.</p>`,
+            trace: [
+              {
+                step: 1,
+                call: "Início da IIFE",
+                explanation: "A função anônima autoexecutável começa a ser executada"
+              },
+              {
+                step: 2,
+                call: "Declaração do array desafio3",
+                explanation: "O array contendo as 32 ações da rotina diária é criado na memória"
+              },
+              {
+                step: 3,
+                call: "console.log(título)",
+                saida: "=== DESAFIO 3 - Rotina Diária (Trabalho + Folga) ===",
+                explanation: "O título do desafio é exibido no console"
+              },
+              {
+                step: 4,
+                call: "desafio3.forEach() - primeira iteração",
+                index: 0,
+                acao: "Acordo às 12:20 com o despertador",
+                saida: "1. Acordo às 12:20 com o despertador",
+                explanation: "O primeiro elemento do array (índice 0) é processado e exibido com o número 1"
+              },
+              {
+                step: 5,
+                call: "desafio3.forEach() - segunda iteração",
+                index: 1,
+                acao: "Troco de roupa, pego o capacete",
+                saida: "2. Troco de roupa, pego o capacete",
+                explanation: "O segundo elemento do array (índice 1) é processado e exibido com o número 2"
+              },
+              {
+                step: 6,
+                call: "desafio3.forEach() - iterações 3-32",
+                explanation: "Os demais elementos do array são processados e exibidos sequencialmente"
+              },
+              {
+                step: 7,
+                call: "Fim da IIFE",
+                explanation: "A função anônima autoexecutável termina sua execução"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -1707,16 +1823,16 @@ if (isNaN(idade) || idade <= 0) {
                           <pre><code>  if (primeiraVez) {</code></pre>
                           <p>Dentro do bloco <code>else</code>, inicia outra estrutura condicional que verifica se <code>primeiraVez</code> é <code>true</code>, ou seja, se o usuário respondeu "sim" à pergunta sobre ser a primeira vez tirando a carteira.</p>
                           
-                          <pre><code>    console.log("Como é a sua primeira carteira, o vencimento é de 1 ano.");</code></pre>
+                          <pre><code    console.log("Como é a sua primeira carteira, o vencimento é de 1 ano.");</code></pre>
                           <p>Se for a primeira vez, exibe a mensagem informando que o vencimento é de 1 ano, independentemente da idade.</p>
                           
-                          <pre><code>  } else {</code></pre>
+                          <pre><code  } else {</code></pre>
                           <p>Inicia outro bloco <code>else</code> que será executado se não for a primeira carteira.</p>
                           
-                          <pre><code>    if (idade < 50) {</code></pre>
+                          <pre><code    if (idade < 50) {</code></pre>
                           <p>Verifica se a idade é menor que 50 anos.</p>
                           
-                          <pre><code>      console.log("O vencimento da sua CNH é de 10 anos.");</code></pre>
+                          <pre><code      console.log("O vencimento da sua CNH é de 10 anos.");</code></pre>
                           <p>Se a idade for menor que 50, exibe que o vencimento é de 10 anos.</p>
                           
                           <pre><code    } else if (idade >= 50 && idade < 70) {</code></pre>
