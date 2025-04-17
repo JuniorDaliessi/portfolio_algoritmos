@@ -62,6 +62,22 @@ const Sidebar: React.FC = () => {
     }
   }, [router.query, challengeDays]);
 
+  const navigateToHome = () => {
+    router.push('/');
+    
+    // Em dispositivos móveis, fechar o menu após seleção
+    if (isMobile && !sidebarCollapsed) {
+      setTimeout(() => {
+        toggleSidebar();
+        
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+          sidebar.classList.remove('mobile-visible');
+        }
+      }, 300);
+    }
+  };
+
   const toggleDay = (dayIndex: number) => {
     setExpandedDays(prev => ({
       ...prev,
@@ -145,7 +161,15 @@ const Sidebar: React.FC = () => {
       id="sidebar"
     >
       <div className="sidebar-header">
-        <h2>Desafios</h2>
+        <h2 
+          onClick={navigateToHome}
+          onKeyDown={(e) => handleKeyDown(e, navigateToHome)}
+          tabIndex={0}
+          role="button"
+          style={{ cursor: 'pointer' }}
+        >
+          Desafios
+        </h2>
         <button 
           className="toggle-btn" 
           onClick={toggleSidebar} 
