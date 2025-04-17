@@ -575,7 +575,7 @@ const dadosFormulario = {
   dataAbertura: new Date("2015-06-10")
 };
 
-console.log("=== DADOS DO FORMULÁRIO COM typeof e instanceof ===\\n");
+console.log("=== DADOS DO FORMULÁRIO COM typeof e instanceof ===\n");
 
 Object.keys(dadosFormulario).forEach((campo) => {
   const valor = dadosFormulario[campo];
@@ -584,38 +584,24 @@ Object.keys(dadosFormulario).forEach((campo) => {
 
   console.log(\`\${campo.toUpperCase()}:\\nValor: \${valor}\\nTipo detectado: \${tipoFinal}\\n\`);
 });`,
-            explanation: `<p>Este código demonstra como podemos representar e analisar os tipos de dados encontrados em um formulário de cadastro de empresas da Caixa Econômica Federal usando JavaScript.</p>
-                        
-                        <p>Criamos um objeto chamado <code>dadosFormulario</code> que contém várias propriedades representando os campos típicos de um cadastro empresarial:</p>
-                        
+            explanation: `<p>Nesta solução, analisamos e categorizamos os tipos de dados encontrados em um formulário típico da Caixa para cadastro empresarial.</p>
+                        <p>O código demonstra:</p>
                         <ul>
-                            <li><strong>Strings (texto)</strong>: Utilizadas para representar a maioria dos campos como razão social, nome fantasia, CNPJ, endereço, CEP, município, UF, telefone, email e natureza jurídica. Mesmo que alguns desses campos possam conter números (como CNPJ, CEP e telefone), eles são armazenados como texto devido à formatação com pontos, traços e outros caracteres especiais.</li>
-                            <li><strong>Numbers (números)</strong>: Usados para valores numéricos como receita fiscal (número com decimais/float), ano de referência (número inteiro) e quantidade de meses (número inteiro).</li>
-                            <li><strong>Date (data)</strong>: Para a data de abertura da empresa, utilizamos o objeto <code>Date</code> que é especializado para manipulação de datas em JavaScript.</li>
+                            <li>A criação de um objeto JavaScript para representar o formulário e seus diferentes campos</li>
+                            <li>A atribuição de valores realistas para cada campo</li>
+                            <li>A utilização de diferentes tipos de dados nativos do JavaScript:</li>
+                            <ul>
+                                <li>String para textos (razão social, nome fantasia, CNPJ formatado, etc.)</li>
+                                <li>Number para valores numéricos (receita fiscal, ano de referência)</li>
+                                <li>Date para datas (data de abertura)</li>
+                            </ul>
+                            <li>Um método automatizado para detectar e exibir o tipo de cada campo:</li>
+                            <ul>
+                                <li>Usando <code>typeof</code> para tipos primitivos</li>
+                                <li>Usando <code>instanceof</code> para detectar objetos especiais como Date</li>
+                            </ul>
                         </ul>
-                        
-                        <p>Na segunda parte do código, utilizamos <code>Object.keys()</code> para iterar sobre todas as propriedades do objeto <code>dadosFormulario</code> e, para cada campo, exibimos:</p>
-                        
-                        <ul>
-                            <li>O nome do campo (em maiúsculas)</li>
-                            <li>O valor armazenado no campo</li>
-                            <li>O tipo de dado detectado, utilizando duas técnicas de JavaScript:
-                                <ul>
-                                    <li><code>typeof</code>: Operador que retorna uma string indicando o tipo de dado primitivo</li>
-                                    <li><code>instanceof</code>: Operador que verifica se um objeto é instância de uma determinada classe (neste caso, verificamos se o valor é uma instância da classe <code>Date</code>)</li>
-                                </ul>
-                            </li>
-                        </ul>
-                        
-                        <p>Esta análise de tipos é fundamental na programação por várias razões:</p>
-                        
-                        <ul>
-                            <li>Validação de dados: garantir que os dados inseridos nos formulários correspondam aos tipos esperados</li>
-                            <li>Armazenamento adequado: definir os tipos de campos em bancos de dados</li>
-                            <li>Manipulação correta: realizar operações apropriadas para cada tipo de dado</li>
-                        </ul>
-                        
-                        <p>A detecção de tipos em JavaScript tem algumas peculiaridades. Por exemplo, o operador <code>typeof</code> retorna "object" para arrays e objetos de data (como <code>Date</code>), por isso precisamos usar técnicas adicionais como <code>instanceof</code> para identificação mais precisa de certos tipos de objetos.</p>`,
+                        <p>Esta abordagem programática é útil porque nos permite visualizar automaticamente cada campo, seu valor e seu tipo, o que facilita a análise de grandes conjuntos de dados.</p>`,
             trace: [
               {
                 step: 1,
@@ -656,34 +642,270 @@ Object.keys(dadosFormulario).forEach((campo) => {
               },
               {
                 step: 6,
-                call: "forEach() - iterações subsequentes para campos tipo string",
-                explanation: "O processo se repete para os outros campos de texto como cnpj, endereco, cep, etc."
+                call: "forEach() - iterações subsequentes",
+                explanation: "O processo continua para cada propriedade do objeto, identificando seus tipos e exibindo as informações"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: "dia2-desafio3",
+        title: "Características de um Produto",
+        versions: [
+          {
+            id: "dia2-desafio3-v1",
+            title: "Análise de Produto do Mercado Livre",
+            statement: `<h2>DESAFIO 03: Características de um produto</h2>
+                        <p>Agora o desafio vai ser grande! Navegue pela página de um produto no Mercado Livre. Você vai começar a entender que no mundo real, quando estamos lidando com dados, geralmente são muitos ao mesmo tempo.</p>
+                        <p>Extraia o máximo de informações que conseguir sobre essa página de produto. Identifique os campos utilizados para formar essa página. Por exemplo: Categorias em que o produto pertence; Se é novo ou usado; Quantidade de Vendas realizadas; Se ele está como Favorito na sua conta ou não, Quantidade de avaliações, Nome do produto e etc.</p>
+                        <p>Faça a maior lista que puder. Esse processo vai te ajudar a refletir sobre a quantidade e os tipos de dados existentes nesse sistema. Mais uma vez, utilize papel e caneta para anotar tudo. Deixe essa preguiça de lado e termine o desafio!</p>`,
+            code: `const produtoMercadoLivre = {
+  nome: "Notebook Dell Alienware I9-13900HX 16GB DDR5 Nvidia RTX 4060",
+  cor: "Dark Metallic Moon",
+  preco: 14999.00,
+  parcelamento: "10x R$ 1.499,90 sem juros",
+  condicao: "Novo",
+  notaAvaliacao: 4.6,
+  quantidadeAvaliacoes: 11,
+  vendidoPor: "ATUAL ELETRONICOS",
+  quantidadeVendas: 100,
+  entregaGratis: true,
+  dataEntregaEstimada: new Date("2025-04-07"), // Exemplo aproximado
+  disponibilidade: "Último disponível",
+  urlVendedor: "https://www.mercadolivre.com.br/perfil/ATUALELETRONICOS"
+};
+
+console.log("=== DADOS DO PRODUTO (MERCADO LIVRE) ===\\n");
+
+Object.keys(produtoMercadoLivre).forEach((campo) => {
+  const valor = produtoMercadoLivre[campo];
+  const tipo = typeof valor;
+  const tipoFinal = valor instanceof Date ? "Date (objeto de data)" : tipo;
+
+  console.log(\`\${campo.toUpperCase()}:\\nValor: \${valor}\\nTipo detectado: \${tipoFinal}\\n\`);
+});`,
+            explanation: `<p>Nesta solução, catalogamos e analisamos os diferentes tipos de dados encontrados em uma página de produto típica do Mercado Livre.</p>
+                        <p>O código demonstra:</p>
+                        <ul>
+                            <li>A modelagem de dados de um produto real usando um objeto JavaScript</li>
+                            <li>A inclusão de diversas propriedades relevantes encontradas em páginas de e-commerce</li>
+                            <li>A utilização de diferentes tipos de dados nativos do JavaScript:</li>
+                            <ul>
+                                <li>String para textos (nome do produto, condição, cor)</li>
+                                <li>Number para valores numéricos (preço, notas de avaliação, quantidades)</li>
+                                <li>Boolean para valores verdadeiro/falso (entrega grátis)</li>
+                                <li>Date para datas (data estimada de entrega)</li>
+                            </ul>
+                            <li>Um método automatizado para detectar e exibir o tipo de cada campo utilizando:</li>
+                            <ul>
+                                <li><code>typeof</code> para identificação de tipos primitivos</li>
+                                <li><code>instanceof</code> para identificação de objetos complexos como Date</li>
+                            </ul>
+                        </ul>
+                        <p>Este exercício ilustra a complexidade dos dados que compõem um produto em um site de e-commerce moderno e como diferentes tipos de dados são necessários para representar adequadamente todas as informações relevantes para o usuário.</p>`,
+            trace: [
+              {
+                step: 1,
+                call: "Declaração do objeto produtoMercadoLivre",
+                explanation: "Criamos um objeto com várias propriedades representando as características de um produto no Mercado Livre"
+              },
+              {
+                step: 2,
+                call: "console.log(título)",
+                saida: "=== DADOS DO PRODUTO (MERCADO LIVRE) ===",
+                explanation: "Exibimos o título da nossa análise"
+              },
+              {
+                step: 3,
+                call: "Object.keys(produtoMercadoLivre)",
+                resultado: ["nome", "cor", "preco", "parcelamento", "condicao", "notaAvaliacao", "quantidadeAvaliacoes", "vendidoPor", "quantidadeVendas", "entregaGratis", "dataEntregaEstimada", "disponibilidade", "urlVendedor"],
+                explanation: "Obtemos um array com todos os nomes de propriedades do objeto produtoMercadoLivre"
+              },
+              {
+                step: 4,
+                call: "forEach() - primeira iteração: nome",
+                campo: "nome",
+                valor: "Notebook Dell Alienware I9-13900HX 16GB DDR5 Nvidia RTX 4060",
+                tipo: "string",
+                tipoFinal: "string",
+                saida: "NOME:\nValor: Notebook Dell Alienware I9-13900HX 16GB DDR5 Nvidia RTX 4060\nTipo detectado: string",
+                explanation: "Verificamos o tipo da propriedade nome e exibimos as informações"
+              },
+              {
+                step: 5,
+                call: "forEach() - segunda iteração: cor",
+                campo: "cor",
+                valor: "Dark Metallic Moon",
+                tipo: "string",
+                tipoFinal: "string",
+                saida: "COR:\nValor: Dark Metallic Moon\nTipo detectado: string",
+                explanation: "Verificamos o tipo da propriedade cor e exibimos as informações"
+              },
+              {
+                step: 6,
+                call: "forEach() - terceira iteração: preco",
+                campo: "preco",
+                valor: 14999.00,
+                tipo: "number",
+                tipoFinal: "number",
+                saida: "PRECO:\nValor: 14999\nTipo detectado: number",
+                explanation: "Verificamos o tipo da propriedade preco e exibimos as informações"
               },
               {
                 step: 7,
-                call: "forEach() - iteração para receitaFiscal",
-                campo: "receitaFiscal",
-                valor: 125000.75,
-                tipo: "number",
-                tipoFinal: "number",
-                saida: "RECEITAFISCAL:\nValor: 125000.75\nTipo detectado: number",
-                explanation: "Verificamos o tipo da propriedade receitaFiscal (um número com casas decimais) e exibimos as informações"
+                call: "forEach() - iteração dataEntregaEstimada",
+                campo: "dataEntregaEstimada",
+                valor: "2025-04-07T00:00:00.000Z",
+                tipo: "object",
+                tipoFinal: "Date (objeto de data)",
+                saida: "DATAENTREGAESTIMADA:\nValor: Mon Apr 07 2025 00:00:00 GMT+0000\nTipo detectado: Date (objeto de data)",
+                explanation: "Verificamos o tipo da propriedade dataEntregaEstimada, identificando-a corretamente como um objeto Date"
               },
               {
                 step: 8,
-                call: "forEach() - iterações para outros campos numéricos",
-                explanation: "O processo se repete para anoReferencia e quantidadeMeses, que também são números"
+                call: "forEach() - iteração entregaGratis",
+                campo: "entregaGratis",
+                valor: true,
+                tipo: "boolean",
+                tipoFinal: "boolean",
+                saida: "ENTREGAGRATIS:\nValor: true\nTipo detectado: boolean",
+                explanation: "Verificamos o tipo da propriedade entregaGratis, identificando-a como boolean"
               },
               {
                 step: 9,
-                call: "forEach() - iteração para dataAbertura",
-                campo: "dataAbertura",
-                valor: "Thu Jun 10 2015 00:00:00 GMT+0000 (GMT)",
-                tipo: "object",
-                instanceof: true,
-                tipoFinal: "Date (objeto de data)",
-                saida: "DATAABERTURA:\nValor: Thu Jun 10 2015 00:00:00 GMT+0000 (GMT)\nTipo detectado: Date (objeto de data)",
-                explanation: "Para a data, typeof retorna 'object', mas verificamos com instanceof Date que é um objeto de data e exibimos a informação correta"
+                call: "forEach() - iterações subsequentes",
+                explanation: "O processo continua para cada propriedade do objeto, identificando seus tipos e exibindo as informações"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: "dia2-desafio4",
+        title: "Cálculo de IMC",
+        versions: [
+          {
+            id: "dia2-desafio4-v1",
+            title: "Calculadora de IMC com Classificação",
+            statement: `<h2>DESAFIO 04: Calcule seu IMC</h2>
+                        <p>Crie um código para calcular o seu IMC (que é o Índice de Massa Corporal). Assim como fizemos antes pode ser no papel ou se você quiser no Playcode.io.</p>
+                        <p>A conta para encontrar o IMC é simples, basta dividir o peso pelo quadrado da altura. Dica: No JavaScript para calcular o quadrado basta usar duas vezes o asterisco "**".</p>`,
+            code: `let peso = parseFloat(prompt("Digite seu peso em kg:"));
+let altura = parseFloat(prompt("Digite sua altura em metros:"));
+
+let imc = peso / (altura ** 2);
+let classificacao = "";
+
+// Determina a faixa com base no IMC
+switch (true) {
+  case (imc < 18.5):
+    classificacao = "Abaixo do peso";
+    break;
+  case (imc < 24.9):
+    classificacao = "Peso normal";
+    break;
+  case (imc < 29.9):
+    classificacao = "Sobrepeso";
+    break;
+  case (imc < 34.9):
+    classificacao = "Obesidade grau 1";
+    break;
+  case (imc < 39.9):
+    classificacao = "Obesidade grau 2";
+    break;
+  default:
+    classificacao = "Obesidade grau 3 (mórbida)";
+}
+
+console.log("=== CÁLCULO DE IMC ===");
+console.log("Peso:", peso, "kg");
+console.log("Altura:", altura, "m");
+console.log("IMC:", imc.toFixed(2));
+console.log("Classificação:", classificacao);`,
+            explanation: `<p>Este código implementa uma calculadora de IMC (Índice de Massa Corporal) que não apenas calcula o índice, mas também fornece uma classificação baseada nos padrões internacionais de saúde.</p>
+                        <p>A solução demonstra:</p>
+                        <ul>
+                            <li>A utilização da função <code>prompt()</code> para capturar entradas do usuário (peso e altura)</li>
+                            <li>Conversão de texto para números com <code>parseFloat()</code> para permitir cálculos matemáticos</li>
+                            <li>O uso do operador de exponenciação (<code>**</code>) para calcular o quadrado da altura</li>
+                            <li>Utilização da estrutura <code>switch/case</code> com expressões booleanas para classificar o IMC em diferentes categorias</li>
+                            <li>Formatação de números decimais com <code>toFixed(2)</code> para exibir apenas duas casas decimais</li>
+                            <li>Exibição organizada dos resultados no console</li>
+                        </ul>
+                        <p>O cálculo do IMC é uma aplicação prática de matemática simples em programação, enquanto a classificação demonstra como podemos usar estruturas condicionais para transformar um valor numérico em informações significativas de saúde.</p>
+                        <p>A escala de classificação utilizada segue os padrões da Organização Mundial da Saúde:</p>
+                        <ul>
+                            <li>Abaixo do peso: IMC < 18,5</li>
+                            <li>Peso normal: IMC entre 18,5 e 24,9</li>
+                            <li>Sobrepeso: IMC entre 25,0 e 29,9</li>
+                            <li>Obesidade grau 1: IMC entre 30,0 e 34,9</li>
+                            <li>Obesidade grau 2: IMC entre 35,0 e 39,9</li>
+                            <li>Obesidade grau 3: IMC ≥ 40,0</li>
+                        </ul>`,
+            trace: [
+              {
+                step: 1,
+                call: "Input de dados para peso",
+                input: "75",
+                peso: 75,
+                explanation: "Usuário informa seu peso como '75', que é convertido para o número 75 através do parseFloat()"
+              },
+              {
+                step: 2,
+                call: "Input de dados para altura",
+                input: "1.75",
+                altura: 1.75,
+                explanation: "Usuário informa sua altura como '1.75', que é convertido para o número 1.75 através do parseFloat()"
+              },
+              {
+                step: 3,
+                call: "Cálculo do IMC",
+                calculo: "75 / (1.75 ** 2)",
+                passos: "75 / (1.75 * 1.75) = 75 / 3.0625 = 24.49",
+                imc: 24.49,
+                explanation: "Calculamos o IMC dividindo o peso (75) pelo quadrado da altura (1.75² = 3.0625), resultando em 24.49"
+              },
+              {
+                step: 4,
+                call: "Avaliação da estrutura switch/case",
+                expressao: "switch (true)",
+                condicao1: "imc < 18.5 => 24.49 < 18.5 => false",
+                condicao2: "imc < 24.9 => 24.49 < 24.9 => true",
+                resultado: "classificacao = 'Peso normal'",
+                classificacao: "Peso normal",
+                explanation: "A estrutura switch avalia cada case e para no primeiro que é verdadeiro (imc < 24.9), atribuindo 'Peso normal' à classificação"
+              },
+              {
+                step: 5,
+                call: "console.log(título)",
+                saida: "=== CÁLCULO DE IMC ===",
+                explanation: "Exibimos o título da nossa análise"
+              },
+              {
+                step: 6,
+                call: "console.log(peso)",
+                saida: "Peso: 75 kg",
+                explanation: "Exibimos o peso informado pelo usuário"
+              },
+              {
+                step: 7,
+                call: "console.log(altura)",
+                saida: "Altura: 1.75 m",
+                explanation: "Exibimos a altura informada pelo usuário"
+              },
+              {
+                step: 8,
+                call: "console.log(imc)",
+                processamento: "imc.toFixed(2) => 24.49 formatado para duas casas decimais",
+                saida: "IMC: 24.49",
+                explanation: "Exibimos o IMC calculado, formatado para mostrar apenas duas casas decimais"
+              },
+              {
+                step: 9,
+                call: "console.log(classificacao)",
+                saida: "Classificação: Peso normal",
+                explanation: "Exibimos a classificação do IMC determinada pela estrutura switch/case"
               }
             ]
           }
