@@ -430,95 +430,117 @@ console.log(fibonacci(10)); // Deve retornar 55`,
     challenges: [
       {
         id: "dia2-desafio1",
-        title: "Busca Binária",
+        title: "Dados de um Documento",
         versions: [
           {
             id: "dia2-desafio1-v1",
-            title: "Implementação Básica",
-            statement: `<h2>Busca Binária</h2>
-                        <p>Implemente um algoritmo de busca binária para encontrar um elemento em um array ordenado.</p>
-                        <p>A busca binária é um algoritmo eficiente para encontrar um item em uma lista ordenada de itens. Ele funciona dividindo repetidamente pela metade a porção da lista que pode conter o item, até reduzir as localizações possíveis a apenas uma.</p>
-                        <h3>Entrada:</h3>
-                        <p>Um array ordenado de números e um valor alvo para buscar.</p>
-                        <h3>Saída:</h3>
-                        <p>O índice do elemento no array, ou -1 se o elemento não existir no array.</p>`,
-            code: `function buscaBinaria(array, alvo) {
-    let inicio = 0;
-    let fim = array.length - 1;
-    
-    while (inicio <= fim) {
-        let meio = Math.floor((inicio + fim) / 2);
-        
-        // Encontrou o elemento
-        if (array[meio] === alvo) {
-            return meio;
-        }
-        
-        // Elemento está na metade direita
-        if (array[meio] < alvo) {
-            inicio = meio + 1;
-        } 
-        // Elemento está na metade esquerda
-        else {
-            fim = meio - 1;
-        }
-    }
-    
-    return -1; // Elemento não encontrado
-}
+            title: "Tipos de Dados",
+            statement: `<h2>DESAFIO 01: Dados de um documento</h2>
+                        <p>Esse desafio é bem simples. Pegue um de seus documentos, de preferência o RG. Faça uma lista dos dados encontrados nele e defina que tipo de dado cada um dos itens de sua lista poderia ser.</p>
+                        <p>Por exemplo: o Nome é um dado do tipo texto e a Data de Nascimento que é do tipo Data.</p>`,
+            code: `// DESAFIO 01: Dados de um documento (RG)
+// Este é um exemplo com dados fictícios
 
-// Exemplo de uso
-const arrayOrdenado = [1, 3, 5, 7, 9, 11, 13, 15, 17];
-console.log(buscaBinaria(arrayOrdenado, 7)); // Deve retornar 3
-console.log(buscaBinaria(arrayOrdenado, 6)); // Deve retornar -1`,
-            explanation: `<p>A busca binária é um algoritmo eficiente para encontrar um item em uma lista ordenada:</p>
+// Objeto representando os dados de um RG
+const dadosRG = {
+  nome: "João Silva Santos", // string (texto)
+  dataNascimento: new Date("1990-05-15"), // Date (data)
+  numeroRG: "12.345.678-9", // string (texto formatado)
+  cpf: "123.456.789-00", // string (texto formatado)
+  filiacao: {
+    nomePai: "Pedro Silva", // string (texto)
+    nomeMae: "Maria Santos" // string (texto)
+  },
+  naturalidade: "São Paulo - SP", // string (texto)
+  dataExpedicao: new Date("2018-10-25"), // Date (data)
+  sexo: "M", // string (caractere/texto)
+  altura: 1.75, // number (número decimal)
+  foto: "binary_data", // dados binários (representando a foto)
+  digital: "binary_data", // dados binários (representando a impressão digital)
+  assinatura: "binary_data", // dados binários (representando a assinatura)
+  orgaoEmissor: "SSP/SP", // string (texto)
+  viaEmissao: 1 // number (número inteiro)
+};
+
+// Exibindo os dados e seus tipos
+console.log("=== DADOS DO RG E SEUS TIPOS ===");
+console.log("Nome:", dadosRG.nome, "- Tipo:", typeof dadosRG.nome);
+console.log("Data de Nascimento:", dadosRG.dataNascimento.toLocaleDateString(), "- Tipo:", dadosRG.dataNascimento instanceof Date ? "Date" : typeof dadosRG.dataNascimento);
+console.log("Número do RG:", dadosRG.numeroRG, "- Tipo:", typeof dadosRG.numeroRG);
+console.log("CPF:", dadosRG.cpf, "- Tipo:", typeof dadosRG.cpf);
+console.log("Nome do Pai:", dadosRG.filiacao.nomePai, "- Tipo:", typeof dadosRG.filiacao.nomePai);
+console.log("Nome da Mãe:", dadosRG.filiacao.nomeMae, "- Tipo:", typeof dadosRG.filiacao.nomeMae);
+console.log("Naturalidade:", dadosRG.naturalidade, "- Tipo:", typeof dadosRG.naturalidade);
+console.log("Data de Expedição:", dadosRG.dataExpedicao.toLocaleDateString(), "- Tipo:", dadosRG.dataExpedicao instanceof Date ? "Date" : typeof dadosRG.dataExpedicao);
+console.log("Sexo:", dadosRG.sexo, "- Tipo:", typeof dadosRG.sexo);
+console.log("Altura:", dadosRG.altura, "- Tipo:", typeof dadosRG.altura);
+console.log("Foto:", "Disponível", "- Tipo:", typeof dadosRG.foto);
+console.log("Digital:", "Disponível", "- Tipo:", typeof dadosRG.digital);
+console.log("Assinatura:", "Disponível", "- Tipo:", typeof dadosRG.assinatura);
+console.log("Órgão Emissor:", dadosRG.orgaoEmissor, "- Tipo:", typeof dadosRG.orgaoEmissor);
+console.log("Via de Emissão:", dadosRG.viaEmissao, "- Tipo:", typeof dadosRG.viaEmissao);`,
+            explanation: `<p>Este código demonstra como podemos representar os dados encontrados em um documento de identidade (RG) usando uma estrutura de dados em JavaScript.</p>
+                        
+                        <p>Utilizamos um objeto chamado <code>dadosRG</code> para armazenar todas as informações encontradas em um RG típico. Cada propriedade do objeto representa um campo do documento e está associada a um tipo de dado específico:</p>
+                        
                         <ul>
-                            <li>Inicializamos dois ponteiros <code>inicio</code> e <code>fim</code> que representam o intervalo de busca.</li>
-                            <li>Em cada iteração, calculamos o ponto <code>meio</code> do intervalo atual.</li>
-                            <li>Se o elemento no ponto médio for igual ao alvo, retornamos o índice.</li>
-                            <li>Se o elemento no ponto médio for menor que o alvo, sabemos que o alvo deve estar na metade direita, então atualizamos <code>inicio = meio + 1</code>.</li>
-                            <li>Se o elemento no ponto médio for maior que o alvo, sabemos que o alvo deve estar na metade esquerda, então atualizamos <code>fim = meio - 1</code>.</li>
-                            <li>Continuamos este processo até encontrar o elemento ou até que o intervalo de busca esteja vazio (<code>inicio > fim</code>).</li>
+                            <li><strong>String (texto)</strong>: Para dados como nome, número do RG, CPF, naturalidade, orgão emissor, etc. Mesmo que alguns desses campos contenham números (como RG e CPF), eles são armazenados como texto devido à formatação com pontos e traços.</li>
+                            <li><strong>Date (data)</strong>: Para campos que representam datas, como data de nascimento e data de expedição. Em JavaScript, usamos o objeto <code>Date</code> para manipular datas.</li>
+                            <li><strong>Number (número)</strong>: Para valores numéricos como altura e via de emissão. A altura é representada como número decimal, enquanto a via de emissão é um número inteiro.</li>
+                            <li><strong>Objeto</strong>: Para dados agrupados, como informações de filiação (nome do pai e da mãe).</li>
+                            <li><strong>Dados binários</strong>: Representados aqui como strings, mas em um sistema real seriam dados binários para a foto, impressão digital e assinatura.</li>
                         </ul>
-                        <p>A busca binária tem uma complexidade de tempo O(log n), o que a torna muito mais eficiente que uma busca linear para arrays grandes.</p>`,
+                        
+                        <p>O código também inclui uma seção que imprime cada campo junto com seu tipo de dado, utilizando:</p>
+                        <ul>
+                            <li>O operador <code>typeof</code> para determinar o tipo da maioria dos campos</li>
+                            <li>O operador <code>instanceof</code> para verificar se um objeto é uma instância da classe <code>Date</code></li>
+                        </ul>
+                        
+                        <p>Este exemplo ilustra como diferentes tipos de dados são utilizados para representar informações do mundo real em um programa de computador. Compreender os tipos de dados apropriados para cada tipo de informação é fundamental na programação, pois isso afeta como os dados são armazenados, manipulados e validados.</p>`,
             trace: [
               {
                 step: 1,
-                call: "buscaBinaria([1, 3, 5, 7, 9, 11, 13, 15, 17], 7)",
-                inicializacao: "inicio = 0, fim = 8",
-                explanation: "Inicializamos os ponteiros de início e fim para cobrir todo o array"
+                call: "Declaração do objeto dadosRG",
+                explanation: "Criamos um objeto chamado dadosRG que armazena todos os dados do documento"
               },
               {
                 step: 2,
-                iteracao: 1,
-                calculo: "meio = Math.floor((0 + 8) / 2) = 4",
-                comparacao: "array[4] = 9, 9 > 7",
-                atualizacao: "fim = meio - 1 = 3",
-                explanation: "O elemento no meio (9) é maior que o alvo (7), então buscamos na metade esquerda"
+                call: "console.log(título)",
+                saida: "=== DADOS DO RG E SEUS TIPOS ===",
+                explanation: "Exibimos o título da nossa análise"
               },
               {
                 step: 3,
-                iteracao: 2,
-                calculo: "meio = Math.floor((0 + 3) / 2) = 1",
-                comparacao: "array[1] = 3, 3 < 7",
-                atualizacao: "inicio = meio + 1 = 2",
-                explanation: "O elemento no meio (3) é menor que o alvo (7), então buscamos na metade direita"
+                call: "console.log(nome e tipo)",
+                dadoAnalisado: "nome",
+                valor: "João Silva Santos",
+                tipo: "string",
+                saida: "Nome: João Silva Santos - Tipo: string",
+                explanation: "Exibimos o valor do nome e determinamos que seu tipo é 'string' (texto)"
               },
               {
                 step: 4,
-                iteracao: 3,
-                calculo: "meio = Math.floor((2 + 3) / 2) = 2",
-                comparacao: "array[2] = 5, 5 < 7",
-                atualizacao: "inicio = meio + 1 = 3",
-                explanation: "O elemento no meio (5) é menor que o alvo (7), então buscamos na metade direita"
+                call: "console.log(data de nascimento e tipo)",
+                dadoAnalisado: "dataNascimento",
+                valor: "15/05/1990", // formato brasileiro para exemplificar
+                tipo: "Date",
+                saida: "Data de Nascimento: 15/05/1990 - Tipo: Date",
+                explanation: "Exibimos a data de nascimento formatada e determinamos que seu tipo é 'Date' (objeto de data)"
               },
               {
                 step: 5,
-                iteracao: 4,
-                calculo: "meio = Math.floor((3 + 3) / 2) = 3",
-                comparacao: "array[3] = 7, 7 === 7",
-                resultado: "return 3",
-                explanation: "Encontramos o alvo 7 no índice 3, então retornamos 3"
+                call: "console.log(número do RG e tipo)",
+                dadoAnalisado: "numeroRG",
+                valor: "12.345.678-9",
+                tipo: "string",
+                saida: "Número do RG: 12.345.678-9 - Tipo: string",
+                explanation: "Exibimos o número do RG e determinamos que seu tipo é 'string' (texto), apesar de conter números, pois inclui formatação com pontos e traço"
+              },
+              {
+                step: 6,
+                call: "console.log demais campos",
+                explanation: "O código continua exibindo os valores e tipos de todos os outros campos do objeto dadosRG"
               }
             ]
           }
@@ -2371,13 +2393,21 @@ if (isNaN(idade) || idade <= 0) {
               {
                 step: 3,
                 algoritmo: "Cenário 3: 50 ≤ Idade < 70",
+                instrucao: "let primeiraVez = primeiraVezInput.toLowerCase() === \"sim\"",
+                calculo: "'nao'.toLowerCase() === 'sim' é false",
+                primeiraVez: false,
+                explanation: "Convertemos a entrada para minúsculo e verificamos se é igual a 'sim'"
+              },
+              {
+                step: 4,
+                algoritmo: "Cenário 3: 50 ≤ Idade < 70",
                 instrucao: "let idade = parseInt(idadeInput)",
                 calculo: "parseInt('60') resulta em 60",
                 idade: 60,
                 explanation: "Convertemos a string '60' para o número inteiro 60"
               },
               {
-                step: 4,
+                step: 5,
                 algoritmo: "Cenário 3: 50 ≤ Idade < 70",
                 instrucao: "if (isNaN(idade) || idade <= 0)",
                 calculo: "isNaN(60) é false, 60 <= 0 é false, então false || false é false",
@@ -2385,31 +2415,31 @@ if (isNaN(idade) || idade <= 0) {
                 explanation: "Verificamos se a idade é válida: não é NaN e é maior que zero"
               },
               {
-                step: 5,
+                step: 6,
                 algoritmo: "Cenário 3: 50 ≤ Idade < 70",
-                instrucao: "else if (primeiraVezInput === \"sim\")",
-                calculo: "'nao' === 'sim' é false",
+                instrucao: "if (primeiraVez)",
+                calculo: "primeiraVez é false",
                 resultado: false,
                 explanation: "Verificamos se é a primeira carteira, o que é falso"
               },
               {
-                step: 6,
+                step: 7,
                 algoritmo: "Cenário 3: 50 ≤ Idade < 70",
-                instrucao: "else if (idade < 50)",
+                instrucao: "if (idade < 50)",
                 calculo: "60 < 50 é false",
                 resultado: false,
                 explanation: "Verificamos se a idade é menor que 50 anos"
               },
               {
-                step: 7,
+                step: 8,
                 algoritmo: "Cenário 3: 50 ≤ Idade < 70",
-                instrucao: "else if (idade < 70)",
-                calculo: "60 < 70 é true",
+                instrucao: "else if (idade >= 50 && idade < 70)",
+                calculo: "60 >= 50 é true, 60 < 70 é true, então true && true é true",
                 resultado: true,
-                explanation: "Verificamos se a idade é menor que 70 anos"
+                explanation: "Verificamos se a idade está entre 50 e 70 anos"
               },
               {
-                step: 8,
+                step: 9,
                 algoritmo: "Cenário 3: 50 ≤ Idade < 70",
                 instrucao: "console.log(\"O vencimento da sua CNH é de 5 anos.\")",
                 saida: "O vencimento da sua CNH é de 5 anos.",
@@ -2434,13 +2464,21 @@ if (isNaN(idade) || idade <= 0) {
               {
                 step: 3,
                 algoritmo: "Cenário 4: Idade ≥ 70",
+                instrucao: "let primeiraVez = primeiraVezInput.toLowerCase() === \"sim\"",
+                calculo: "'nao'.toLowerCase() === 'sim' é false",
+                primeiraVez: false,
+                explanation: "Convertemos a entrada para minúsculo e verificamos se é igual a 'sim'"
+              },
+              {
+                step: 4,
+                algoritmo: "Cenário 4: Idade ≥ 70",
                 instrucao: "let idade = parseInt(idadeInput)",
                 calculo: "parseInt('75') resulta em 75",
                 idade: 75,
                 explanation: "Convertemos a string '75' para o número inteiro 75"
               },
               {
-                step: 4,
+                step: 5,
                 algoritmo: "Cenário 4: Idade ≥ 70",
                 instrucao: "if (isNaN(idade) || idade <= 0)",
                 calculo: "isNaN(75) é false, 75 <= 0 é false, então false || false é false",
@@ -2448,31 +2486,31 @@ if (isNaN(idade) || idade <= 0) {
                 explanation: "Verificamos se a idade é válida: não é NaN e é maior que zero"
               },
               {
-                step: 5,
+                step: 6,
                 algoritmo: "Cenário 4: Idade ≥ 70",
-                instrucao: "else if (primeiraVezInput === \"sim\")",
-                calculo: "'nao' === 'sim' é false",
+                instrucao: "if (primeiraVez)",
+                calculo: "primeiraVez é false",
                 resultado: false,
                 explanation: "Verificamos se é a primeira carteira, o que é falso"
               },
               {
-                step: 6,
+                step: 7,
                 algoritmo: "Cenário 4: Idade ≥ 70",
-                instrucao: "else if (idade < 50)",
+                instrucao: "if (idade < 50)",
                 calculo: "75 < 50 é false",
                 resultado: false,
                 explanation: "Verificamos se a idade é menor que 50 anos"
               },
               {
-                step: 7,
+                step: 8,
                 algoritmo: "Cenário 4: Idade ≥ 70",
-                instrucao: "else if (idade < 70)",
-                calculo: "75 < 70 é false",
+                instrucao: "else if (idade >= 50 && idade < 70)",
+                calculo: "75 >= 50 é true, 75 < 70 é false, então true && false é false",
                 resultado: false,
-                explanation: "Verificamos se a idade é menor que 70 anos"
+                explanation: "Verificamos se a idade está entre 50 e 70 anos"
               },
               {
-                step: 8,
+                step: 9,
                 algoritmo: "Cenário 4: Idade ≥ 70",
                 instrucao: "else { console.log(\"O vencimento da sua CNH é de 3 anos.\"); }",
                 saida: "O vencimento da sua CNH é de 3 anos.",
