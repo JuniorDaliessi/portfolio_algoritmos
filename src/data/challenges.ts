@@ -703,6 +703,93 @@ Object.keys(produtoMercadoLivre).forEach((campo) => {
                                 <li><code>instanceof</code> para identificação de objetos complexos como Date</li>
                             </ul>
                         </ul>
+
+                        <div class="code-explanation">
+                          <h4>Análise detalhada linha por linha:</h4>
+                          
+                          <pre><code>const produtoMercadoLivre = {
+  nome: "Notebook Dell Alienware I9-13900HX 16GB DDR5 Nvidia RTX 4060",
+  cor: "Dark Metallic Moon",
+  preco: 14999.00,
+  parcelamento: "10x R$ 1.499,90 sem juros",
+  condicao: "Novo",
+  notaAvaliacao: 4.6,
+  quantidadeAvaliacoes: 11,
+  vendidoPor: "ATUAL ELETRONICOS",
+  quantidadeVendas: 100,
+  entregaGratis: true,
+  dataEntregaEstimada: new Date("2025-04-07"), // Exemplo aproximado
+  disponibilidade: "Último disponível",
+  urlVendedor: "https://www.mercadolivre.com.br/perfil/ATUALELETRONICOS"
+};</code></pre>
+                          <p>Declaração e inicialização de um objeto JavaScript que representa um produto do Mercado Livre:</p>
+                          <ul>
+                            <li>Usamos <code>const</code> para declarar um objeto que não será reatribuído</li>
+                            <li>O objeto contém 13 propriedades representando diferentes características do produto</li>
+                            <li>Utilizamos diferentes tipos de dados:
+                              <ul>
+                                <li><strong>Strings</strong>: Para textos como nome, cor, parcelamento, condição, etc.</li>
+                                <li><strong>Numbers</strong>: Para valores numéricos como preço, nota de avaliação, quantidade</li>
+                                <li><strong>Boolean</strong>: Para a propriedade entregaGratis, representando sim/não</li>
+                                <li><strong>Date</strong>: Um objeto de data para dataEntregaEstimada</li>
+                              </ul>
+                            </li>
+                            <li>O comentário <code>// Exemplo aproximado</code> indica que o valor é ilustrativo</li>
+                          </ul>
+                          
+                          <pre><code>console.log("=== DADOS DO PRODUTO (MERCADO LIVRE) ===\\n");</code></pre>
+                          <p>Exibe um cabeçalho no console para identificar o propósito da saída:</p>
+                          <ul>
+                            <li>O <code>\\n</code> é um caractere de escape que representa uma quebra de linha</li>
+                            <li>Isso cria um espaço visual após o título, melhorando a legibilidade</li>
+                          </ul>
+                          
+                          <pre><code>Object.keys(produtoMercadoLivre).forEach((campo) => {</code></pre>
+                          <p>Inicia um loop que itera sobre cada propriedade do objeto produtoMercadoLivre:</p>
+                          <ul>
+                            <li><code>Object.keys()</code> retorna um array com os nomes de todas as propriedades do objeto</li>
+                            <li><code>forEach()</code> executa a função de callback para cada elemento do array</li>
+                            <li>O parâmetro <code>campo</code> receberá cada nome de propriedade (ex: "nome", "cor", "preco")</li>
+                          </ul>
+                          
+                          <pre><code>  const valor = produtoMercadoLivre[campo];</code></pre>
+                          <p>Obtém o valor da propriedade atual:</p>
+                          <ul>
+                            <li>A notação <code>produtoMercadoLivre[campo]</code> permite acessar dinamicamente propriedades</li>
+                            <li>Por exemplo, se <code>campo</code> for "preco", a expressão acessará <code>produtoMercadoLivre.preco</code></li>
+                          </ul>
+                          
+                          <pre><code>  const tipo = typeof valor;</code></pre>
+                          <p>Determina o tipo primitivo do valor usando o operador <code>typeof</code>:</p>
+                          <ul>
+                            <li>O operador <code>typeof</code> retorna uma string indicando o tipo primitivo</li>
+                            <li>Possíveis retornos incluem: "string", "number", "boolean", "object", etc.</li>
+                            <li>Note que <code>typeof</code> retorna "object" para arrays, objetos e objetos Date</li>
+                          </ul>
+                          
+                          <pre><code>  const tipoFinal = valor instanceof Date ? "Date (objeto de data)" : tipo;</code></pre>
+                          <p>Refina a detecção de tipo para objetos especiais:</p>
+                          <ul>
+                            <li>O operador <code>instanceof</code> verifica se o valor é uma instância de uma classe específica</li>
+                            <li>Quando <code>valor instanceof Date</code> é verdadeiro, atribui "Date (objeto de data)" à <code>tipoFinal</code></li>
+                            <li>Caso contrário, mantém o tipo original detectado pelo <code>typeof</code></li>
+                            <li>Isso resolve a limitação do <code>typeof</code> que identifica qualquer objeto como "object"</li>
+                          </ul>
+                          
+                          <pre><code>  console.log(\`\${campo.toUpperCase()}:\nValor: \${valor}\nTipo detectado: \${tipoFinal}\n\`);</code></pre>
+                          <p>Exibe as informações formatadas no console:</p>
+                          <ul>
+                            <li>Usa a sintaxe de template string (backticks) para interpolação de variáveis</li>
+                            <li><code>campo.toUpperCase()</code> converte o nome da propriedade para maiúsculas</li>
+                            <li>Inclui quebras de linha (\n) para formatar visualmente a saída</li>
+                            <li>Exibe três informações: nome do campo, seu valor e tipo detectado</li>
+                            <li>Adiciona uma linha em branco ao final de cada campo para melhor separação visual</li>
+                          </ul>
+                          
+                          <pre><code>});</code></pre>
+                          <p>Fecha o bloco da função de callback do <code>forEach</code>, completando o loop que processa cada propriedade.</p>
+                        </div>
+                        
                         <p>Este exercício ilustra a complexidade dos dados que compõem um produto em um site de e-commerce moderno e como diferentes tipos de dados são necessários para representar adequadamente todas as informações relevantes para o usuário.</p>`,
             trace: [
               {
@@ -833,16 +920,7 @@ console.log("Classificação:", classificacao);`,
                             <li>Formatação de números decimais com <code>toFixed(2)</code> para exibir apenas duas casas decimais</li>
                             <li>Exibição organizada dos resultados no console</li>
                         </ul>
-                        <p>O cálculo do IMC é uma aplicação prática de matemática simples em programação, enquanto a classificação demonstra como podemos usar estruturas condicionais para transformar um valor numérico em informações significativas de saúde.</p>
-                        <p>A escala de classificação utilizada segue os padrões da Organização Mundial da Saúde:</p>
-                        <ul>
-                            <li>Abaixo do peso: IMC < 18,5</li>
-                            <li>Peso normal: IMC entre 18,5 e 24,9</li>
-                            <li>Sobrepeso: IMC entre 25,0 e 29,9</li>
-                            <li>Obesidade grau 1: IMC entre 30,0 e 34,9</li>
-                            <li>Obesidade grau 2: IMC entre 35,0 e 39,9</li>
-                            <li>Obesidade grau 3: IMC ≥ 40,0</li>
-                        </ul>`,
+                        <p>O código também inclui uma seção que calcula a classificação do IMC com base nos padrões da Organização Mundial da Saúde (OMS) e exibe a classificação correspondente no console.</p>`,
             trace: [
               {
                 step: 1,
