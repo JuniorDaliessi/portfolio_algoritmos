@@ -197,6 +197,115 @@ console.log(fibonacci(10)); // Deve retornar 55`,
             ]
           }
         ]
+      },
+      {
+        id: "dia1-desafio2",
+        title: "Receita Favorita",
+        versions: [
+          {
+            id: "dia1-desafio2-v1",
+            title: "Preparo de Hambúrguer",
+            statement: `<h2>DESAFIO 02: Escreva a sua receita favorita</h2>
+                        <p>O próximo desafio é bem parecido com o de acordar, porém envolve algo que está completamente relacionado com algoritmo e lógica de programação: Cozinhar.</p>
+                        <p>Isso mesmo, desenvolver uma receita na cozinha é muito próximo da execução de um programa de computador. Se você já conhece as técnicas e os passos necessários para executar a mesma receita diversas vezes, basta você repetir.</p>
+                        <p>Ainda em um papel e caneta, escreva a sua receita favorita na cozinha. Pode ser um macarrão, o preparo de uma bebida, mas deve ser algo que você levou ao menos um tempo para preparar. Dessa vez detalhe ao máximo o processo, fazendo com que tenha no mínimo 20 etapas. Vamos testar a sua capacidade para entrar ainda mais na abstração.</p>`,
+            code: `// Encapsular em uma função anônima autoexecutável (opcional, para organizar)
+(function() {
+  // =========================================================
+  // DESAFIO 2 - Preparo de Hambúrguer
+  // =========================================================
+  const desafio2 = [
+    "Vou até a cozinha",
+    "Pego a chapa elétrica",
+    "Ligo a chapa na tomada",
+    "Espero esquentar",
+    "Pego um hambúrguer e coloco na chapa",
+    "Pego o bacon, pico em pedaços",
+    "Coloco o bacon na chapa",
+    "Pego o pão, abro o pão",
+    "Pego os molhos e passo no pão",
+    "Pego uma folha de alface, lavo a folha, coloco no pão",
+    "Pego uma espátula, viro o hambúrguer, mexo o bacon",
+    "Pego o bacon com a espátula e coloco no pão",
+    "Pego o hambúrguer, coloco no pão",
+    "Pego um ovo, quebro ele na chapa",
+    "Uso uma tampa pequena para cobrir o ovo e deixá-lo no formato redondo",
+    "Corto a cebola em anéis, coloco na chapa",
+    "Pego o ovo frito, coloco no pão",
+    "Retiro os anéis de cebola e coloco no pão",
+    "Fecho o pão, levo à chapa, prenso dos dois lados",
+    "Retiro o lanche da chapa, coloco no prato, como o lanche"
+  ];
+
+  console.log("=== DESAFIO 2 - Preparo de Hambúrguer ===");
+  desafio2.forEach((passo, index) => {
+    console.log(\`\${index + 1}. \${passo}\`);
+  });
+  
+  console.log("\\n");
+})();`,
+            explanation: `<p>Este código demonstra como podemos representar uma sequência de passos para o preparo de um hambúrguer usando JavaScript.</p>
+                        <p>Assim como no desafio anterior, usamos uma função anônima autoexecutável (IIFE) para encapsular nosso código, evitando poluição no escopo global.</p>
+                        <p>O algoritmo apresenta uma lista detalhada dos passos sequenciais para preparar um hambúrguer, incluindo:</p>
+                        <ul>
+                            <li>Preparação da chapa e dos ingredientes</li>
+                            <li>Montagem do lanche em uma ordem específica</li>
+                            <li>Cozimento dos diferentes componentes</li>
+                            <li>Finalização e consumo do hambúrguer</li>
+                        </ul>
+                        <p>Assim como os algoritmos de computador, uma receita segue uma sequência lógica de instruções em ordem específica. Se alterarmos a ordem (por exemplo, colocar o ovo antes de fritar o hambúrguer), podemos ter resultados completamente diferentes.</p>
+                        <p>Este exemplo demonstra bem o conceito de algoritmo: uma sequência finita e ordenada de passos bem definidos para realizar uma tarefa.</p>`,
+            trace: [
+              {
+                step: 1,
+                call: "Início da IIFE",
+                explanation: "A função anônima autoexecutável começa a ser executada"
+              },
+              {
+                step: 2,
+                call: "Declaração do array desafio2",
+                explanation: "O array contendo os passos do preparo do hambúrguer é criado na memória"
+              },
+              {
+                step: 3,
+                call: "console.log(título)",
+                saida: "=== DESAFIO 2 - Preparo de Hambúrguer ===",
+                explanation: "O título do desafio é exibido no console"
+              },
+              {
+                step: 4,
+                call: "desafio2.forEach() - primeira iteração",
+                index: 0,
+                passo: "Vou até a cozinha",
+                saida: "1. Vou até a cozinha",
+                explanation: "O primeiro elemento do array (índice 0) é processado e exibido com o número 1"
+              },
+              {
+                step: 5,
+                call: "desafio2.forEach() - segunda iteração",
+                index: 1,
+                passo: "Pego a chapa elétrica",
+                saida: "2. Pego a chapa elétrica",
+                explanation: "O segundo elemento do array (índice 1) é processado e exibido com o número 2"
+              },
+              {
+                step: 6,
+                call: "desafio2.forEach() - iterações 3-20",
+                explanation: "Os demais elementos do array são processados e exibidos sequencialmente"
+              },
+              {
+                step: 7,
+                call: "console.log(\"\\n\")",
+                explanation: "Uma linha em branco é adicionada após a listagem dos passos"
+              },
+              {
+                step: 8,
+                call: "Fim da IIFE",
+                explanation: "A função anônima autoexecutável termina sua execução"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
