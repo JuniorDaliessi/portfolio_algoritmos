@@ -2964,5 +2964,241 @@ if (isNaN(idade) || idade <= 0) {
         ]
       }
     ]
+  },
+  {
+    day: "Dia 5",
+    challenges: [
+      {
+        id: "dia5-desafio1",
+        title: "Rendimento de Aplicação Financeira",
+        versions: [
+          {
+            id: "dia5-desafio1-v1",
+            title: "Simulador de Investimento com Juros Compostos",
+            statement: `<h2>DESAFIO 01: Rendimento de aplicação financeira</h2>
+                        <p>Suponha que você investiu R$ 1.000 em uma aplicação financeira que rende 12% ao ano. Usando um loop for, podemos calcular como esse investimento cresce ao longo do tempo, vamos supor nos próximos 10 anos. Mostre o valor no console por ano.</p>`,
+            code: `// === DESAFIO 01: Rendimento de Aplicação Financeira ===
+//
+// Este código solicita ao usuário que informe:
+// 1) O valor inicial do investimento (em reais)
+// 2) A taxa de rendimento anual (em %)
+// 3) O número de anos de investimento
+//
+// Em seguida, o programa calcula e exibe o valor acumulado ao final de cada ano.
+
+let investimentoInput = prompt("Digite o valor inicial do investimento (em reais):");
+let taxaInput = prompt("Digite a taxa de rendimento anual (em %):");
+let anosInput = prompt("Digite o número de anos de investimento:");
+
+let investimento = parseFloat(investimentoInput);
+let taxaPercent = parseFloat(taxaInput);
+let anos = parseInt(anosInput);
+
+// Validação das entradas
+if (isNaN(investimento) || investimento <= 0) {
+  console.log("Valor de investimento inválido.");
+} else if (isNaN(taxaPercent) || taxaPercent <= 0) {
+  console.log("Taxa de rendimento inválida.");
+} else if (isNaN(anos) || anos <= 0) {
+  console.log("Número de anos inválido.");
+} else {
+  // Converte a taxa percentual para decimal (ex: 12% => 0.12)
+  let taxa = taxaPercent / 100;
+
+  console.log("=== DESAFIO 01: Rendimento de Aplicação Financeira ===\\n");
+  console.log("Investimento inicial: R$ " + investimento.toFixed(2));
+  console.log("Taxa de rendimento anual: " + taxaPercent + "%");
+  console.log("Número de anos: " + anos + "\\n");
+
+  // Calcula e exibe o valor acumulado ao final de cada ano
+  for (let ano = 1; ano <= anos; ano++) {
+    investimento = investimento * (1 + taxa);
+    console.log("Após " + ano + " ano(s), valor acumulado: R$ " + investimento.toFixed(2));
+  }
+}`,
+            explanation: `<p>Este código implementa um simulador de investimento com juros compostos, um conceito fundamental em finanças e investimentos.</p>
+
+                        <div class="code-explanation">
+                          <h4>Análise detalhada linha por linha:</h4>
+                          
+                          <pre><code>let investimentoInput = prompt("Digite o valor inicial do investimento (em reais):");</code></pre>
+                          <p>Solicita e armazena o valor inicial do investimento informado pelo usuário:</p>
+                          <ul>
+                            <li>A função <code>prompt()</code> exibe uma caixa de diálogo para entrada do usuário</li>
+                            <li>O valor inserido é armazenado como string na variável <code>investimentoInput</code></li>
+                          </ul>
+                          
+                          <pre><code>let taxaInput = prompt("Digite a taxa de rendimento anual (em %):");</code></pre>
+                          <p>Solicita e armazena a taxa de rendimento anual:</p>
+                          <ul>
+                            <li>Similar ao passo anterior, captura o percentual de rendimento da aplicação</li>
+                            <li>Por exemplo, para uma aplicação que rende 12% ao ano, o usuário deve digitar "12"</li>
+                          </ul>
+                          
+                          <pre><code>let anosInput = prompt("Digite o número de anos de investimento:");</code></pre>
+                          <p>Solicita e armazena o horizonte temporal do investimento:</p>
+                          <ul>
+                            <li>Captura por quantos anos a simulação deve ser realizada</li>
+                            <li>Define o número de iterações do loop <code>for</code> que calculará os rendimentos</li>
+                          </ul>
+                          
+                          <pre><code>let investimento = parseFloat(investimentoInput);
+let taxaPercent = parseFloat(taxaInput);
+let anos = parseInt(anosInput);</code></pre>
+                          <p>Converte as entradas do usuário de strings para números:</p>
+                          <ul>
+                            <li><code>parseFloat()</code> converte para números decimais (investimento e taxa)</li>
+                            <li><code>parseInt()</code> converte para número inteiro (anos)</li>
+                            <li>Essa conversão é necessária para realizar operações matemáticas</li>
+                          </ul>
+                          
+                          <pre><code>// Validação das entradas
+if (isNaN(investimento) || investimento <= 0) {
+  console.log("Valor de investimento inválido.");
+} else if (isNaN(taxaPercent) || taxaPercent <= 0) {
+  console.log("Taxa de rendimento inválida.");
+} else if (isNaN(anos) || anos <= 0) {
+  console.log("Número de anos inválido.");
+} else {</code></pre>
+                          <p>Implementa validações para garantir entradas corretas:</p>
+                          <ul>
+                            <li>Verifica se o investimento é um número válido e positivo</li>
+                            <li>Verifica se a taxa é um número válido e positivo</li>
+                            <li>Verifica se o número de anos é um número válido e positivo</li>
+                            <li>A função <code>isNaN()</code> retorna verdadeiro se o valor não for um número</li>
+                            <li>Apenas prossegue com o cálculo se todas as entradas forem válidas</li>
+                          </ul>
+                          
+                          <pre><code>  // Converte a taxa percentual para decimal (ex: 12% => 0.12)
+  let taxa = taxaPercent / 100;</code></pre>
+                          <p>Converte a taxa percentual para formato decimal:</p>
+                          <ul>
+                            <li>Para cálculos de juros, a taxa deve estar em formato decimal (ex: 12% = 0.12)</li>
+                            <li>Simplifica o cálculo do rendimento na fórmula de juros compostos</li>
+                          </ul>
+                          
+                          <pre><code>  console.log("=== DESAFIO 01: Rendimento de Aplicação Financeira ===\\n");
+  console.log("Investimento inicial: R$ " + investimento.toFixed(2));
+  console.log("Taxa de rendimento anual: " + taxaPercent + "%");
+  console.log("Número de anos: " + anos + "\\n");</code></pre>
+                          <p>Exibe um resumo dos parâmetros do investimento:</p>
+                          <ul>
+                            <li>O método <code>toFixed(2)</code> formata o valor com duas casas decimais</li>
+                            <li>Exibe as informações de forma clara para o usuário acompanhar os resultados</li>
+                          </ul>
+                          
+                          <pre><code>  // Calcula e exibe o valor acumulado ao final de cada ano
+  for (let ano = 1; ano <= anos; ano++) {
+    investimento = investimento * (1 + taxa);
+    console.log("Após " + ano + " ano(s), valor acumulado: R$ " + investimento.toFixed(2));
+  }</code></pre>
+                          <p>Implementa o cálculo de juros compostos usando um loop:</p>
+                          <ul>
+                            <li>O loop <code>for</code> itera de 1 até o número de anos especificado</li>
+                            <li>Em cada iteração, aplica a fórmula de juros compostos: Montante = Principal × (1 + taxa)<sup>tempo</sup></li>
+                            <li>Aqui, a fórmula é aplicada ano a ano, atualizando o valor do investimento</li>
+                            <li>Exibe o resultado acumulado ao final de cada período</li>
+                          </ul>
+                        </div>
+
+                        <p>O código demonstra conceitos importantes:</p>
+                        <ul>
+                            <li>Interação com o usuário através de prompts para entrada de dados</li>
+                            <li>Conversão e validação de tipos de dados para garantir cálculos corretos</li>
+                            <li>Aplicação da fórmula de juros compostos, fundamental em cálculos financeiros</li>
+                            <li>Uso de loops para simular o acúmulo de valor ao longo do tempo</li>
+                            <li>Formatação de valores monetários para melhor legibilidade</li>
+                        </ul>
+
+                        <p>Este é um exemplo prático de como a programação pode ser aplicada para resolver problemas financeiros do mundo real, como planejamento de aposentadoria, análise de investimentos ou educação financeira.</p>`,
+            trace: [
+              {
+                step: 1,
+                call: "Entrada de dados",
+                investimentoInput: "1000",
+                taxaInput: "12",
+                anosInput: "10",
+                explanation: "O usuário insere os valores iniciais: R$ 1000 de investimento inicial, 12% de taxa anual, e período de 10 anos"
+              },
+              {
+                step: 2,
+                call: "Conversão de tipos",
+                investimento: 1000,
+                taxaPercent: 12,
+                anos: 10,
+                explanation: "As strings são convertidas para seus respectivos tipos numéricos usando parseFloat() e parseInt()"
+              },
+              {
+                step: 3,
+                call: "Validação de entradas",
+                resultado: "Todas as entradas são válidas (números positivos)",
+                explanation: "O programa verifica se todas as entradas são números válidos e positivos antes de prosseguir"
+              },
+              {
+                step: 4,
+                call: "Conversão da taxa para decimal",
+                calculo: "12 / 100 = 0.12",
+                taxa: 0.12,
+                explanation: "A taxa percentual (12%) é convertida para formato decimal (0.12) para uso na fórmula de juros compostos"
+              },
+              {
+                step: 5,
+                call: "Exibição dos parâmetros iniciais",
+                saida: [
+                  "=== DESAFIO 01: Rendimento de Aplicação Financeira ===",
+                  "",
+                  "Investimento inicial: R$ 1000.00",
+                  "Taxa de rendimento anual: 12%",
+                  "Número de anos: 10",
+                  ""
+                ],
+                explanation: "Os parâmetros do investimento são exibidos no console para referência"
+              },
+              {
+                step: 6,
+                call: "Loop ano 1",
+                iteracao: 1,
+                calculo: "1000 * (1 + 0.12) = 1120",
+                investimento: 1120,
+                saida: "Após 1 ano(s), valor acumulado: R$ 1120.00",
+                explanation: "No primeiro ano, o investimento de R$ 1000 rende 12%, totalizando R$ 1120"
+              },
+              {
+                step: 7,
+                call: "Loop ano 2",
+                iteracao: 2,
+                calculo: "1120 * (1 + 0.12) = 1254.40",
+                investimento: 1254.40,
+                saida: "Após 2 ano(s), valor acumulado: R$ 1254.40",
+                explanation: "No segundo ano, o novo montante de R$ 1120 rende 12%, totalizando R$ 1254.40"
+              },
+              {
+                step: 8,
+                call: "Loop ano 3",
+                iteracao: 3,
+                calculo: "1254.40 * (1 + 0.12) = 1404.93",
+                investimento: 1404.93,
+                saida: "Após 3 ano(s), valor acumulado: R$ 1404.93",
+                explanation: "No terceiro ano, o montante de R$ 1254.40 rende 12%, totalizando R$ 1404.93"
+              },
+              {
+                step: 9,
+                call: "Iterações subsequentes",
+                explanation: "O processo continua até o décimo ano, com o investimento crescendo a cada período"
+              },
+              {
+                step: 10,
+                call: "Loop ano 10 (final)",
+                iteracao: 10,
+                calculo: "2772.04 * (1 + 0.12) = 3104.68",
+                investimento: 3104.68,
+                saida: "Após 10 ano(s), valor acumulado: R$ 3104.68",
+                explanation: "No décimo e último ano, o investimento inicial de R$ 1000 triplicou, chegando a R$ 3104.68"
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 ]; 
