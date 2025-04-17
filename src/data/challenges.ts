@@ -6,134 +6,104 @@ export const challengesData: ChallengeDay[] = [
     challenges: [
       {
         id: "dia1-desafio1",
-        title: "Fibonacci",
+        title: "Rotina para Acordar",
         versions: [
           {
             id: "dia1-desafio1-v1",
-            title: "Versão Recursiva",
-            statement: `<h2>Sequência de Fibonacci - Versão Recursiva</h2>
-                        <p>Implemente uma função recursiva para calcular o n-ésimo número da sequência de Fibonacci.</p>
-                        <p>Na matemática, a sequência de Fibonacci é uma sequência de números inteiros, começando normalmente por 0 e 1, na qual cada termo subsequente corresponde à soma dos dois anteriores.</p>
-                        <p>Por exemplo: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...</p>
-                        <h3>Entrada:</h3>
-                        <p>Um número inteiro não negativo n.</p>
-                        <h3>Saída:</h3>
-                        <p>O n-ésimo número na sequência de Fibonacci.</p>
-                        <h3>Restrições:</h3>
-                        <ul>
-                            <li>0 ≤ n ≤ 30</li>
-                        </ul>`,
-            code: `function fibonacci(n) {
-    // Casos base
-    if (n <= 0) return 0;
-    if (n === 1) return 1;
-    
-    // Chamada recursiva
-    return fibonacci(n - 1) + fibonacci(n - 2);
-}
+            title: "Algoritmo de Rotina Matinal",
+            statement: `<h2>DESAFIO 01: Escreva o seu algoritmo para acordar</h2>
+                        <p>Para começar a exercitar, quero que você pegue papel e caneta. Crie uma lista numerada de atividades que você faz quando acorda até o momento antes de ir tomar café. Usar papel e caneta tem o propósito de ajudar na fixação, e esse exemplo bobinho vai te ajudar a criar abstrações sobre algumas dessas etapas.</p>
+                        <p>Vamos combinar o seguinte: Tem que ser na caneta e não pode ter rasura!</p>
+                        <p>Você provavelmente vai ficar em dúvida sobre algumas dessas atividades. Por exemplo, se você escrever que a primeira coisa que faz é abrir os olhos, então poderá pensar se será necessário enumerar todos os outros movimentos do corpo, como esticar as pernas, ou andar até o banheiro. Em um primeiro momento, você é quem vai definir esse nível de abstração.</p>
+                        <p>Sua lista pode ter 20 itens, ou 200. Você é quem decide. O importante é conseguir enumerar de forma cronológica, seguindo um passo a passo. Por isso esse desafio parece bobinho, mas é algo poderoso para você mesmo entender como é esse processo de pensamento dentro de você.</p>`,
+            code: `// Encapsular em uma função anônima autoexecutável (opcional, para organizar)
+(function() {
+  // =========================================================
+  // DESAFIO 1 - Rotina para Acordar
+  // =========================================================
+  const desafio1 = [
+    "Ouço o despertador tocar",
+    "Sinto minha consciência sair do modo hibernação",
+    "Abro os olhos",
+    "Desligo o despertador",
+    "Espreguiço o corpo",
+    "Levanto da cama",
+    "Caminho até o banheiro",
+    "Caminho até a geladeira",
+    "Pego limão",
+    "Pego água",
+    "Espremo meio limão na água",
+    "Bebo a água com limão",
+    "Preparo algo para comer"
+  ];
 
-// Exemplo de uso
-console.log(fibonacci(10)); // Deve retornar 55`,
-            explanation: `<p>Esta implementação usa o método recursivo para calcular a sequência de Fibonacci.</p>
-                        <p>Recursão é quando uma função chama a si mesma para resolver um problema.</p>
-                        <p>A função <code>fibonacci(n)</code> calcula o n-ésimo número da sequência de Fibonacci da seguinte maneira:</p>
+  console.log("=== DESAFIO 1 - Rotina para Acordar ===");
+  desafio1.forEach((passo, index) => {
+    console.log(\`\${index + 1}. \${passo}\`);
+  });
+  
+  // Espaço extra no console
+  console.log("\\n");
+})();`,
+            explanation: `<p>Este código demonstra como podemos usar arrays e funções JavaScript para representar uma sequência de passos para uma rotina matinal.</p>
+                        <p>O código está contido em uma função anônima autoexecutável (IIFE), que é um padrão comumente usado para isolar variáveis e evitar poluição no escopo global.</p>
+                        <p>O algoritmo apresenta uma lista de passos sequenciais que demonstram a rotina para acordar de uma pessoa, como:</p>
                         <ul>
-                            <li>Se n for 0, retorna 0 (caso base)</li>
-                            <li>Se n for 1, retorna 1 (caso base)</li>
-                            <li>Para qualquer outro n, retorna a soma de fibonacci(n-1) e fibonacci(n-2) (passo recursivo)</li>
+                            <li>Despertar ao ouvir o despertador</li>
+                            <li>Acordar (abrir os olhos, desligar o despertador)</li>
+                            <li>Levantar e iniciar os preparativos matinais</li>
+                            <li>Preparar uma bebida (água com limão)</li>
+                            <li>Iniciar os preparativos para o café da manhã</li>
                         </ul>
-                        <p>No entanto, este método tem um problema de desempenho significativo para valores grandes de n, pois calcula os mesmos valores repetidamente.</p>`,
+                        <p>Para visualizar os passos, usamos o método <code>forEach()</code> do array para iterar sobre cada passo e exibi-lo com seu número correspondente.</p>
+                        <p>Este é um bom exemplo de como algoritmos podem ser usados para decompor tarefas cotidianas em passos sequenciais lógicos, o que é a base do pensamento computacional.</p>`,
             trace: [
               {
                 step: 1,
-                call: "fibonacci(5)",
-                n: 5,
-                return: "fibonacci(4) + fibonacci(3)",
-                explanation: "Para calcular fibonacci(5), precisamos de fibonacci(4) e fibonacci(3)"
+                call: "Início da IIFE",
+                explanation: "A função anônima autoexecutável começa a ser executada"
               },
               {
                 step: 2,
-                call: "fibonacci(4)",
-                n: 4,
-                return: "fibonacci(3) + fibonacci(2)",
-                explanation: "Para calcular fibonacci(4), precisamos de fibonacci(3) e fibonacci(2)"
+                call: "Declaração do array desafio1",
+                explanation: "O array contendo os passos da rotina matinal é criado na memória"
               },
               {
                 step: 3,
-                call: "fibonacci(3)",
-                n: 3,
-                return: "fibonacci(2) + fibonacci(1)",
-                explanation: "Para calcular fibonacci(3), precisamos de fibonacci(2) e fibonacci(1)"
+                call: "console.log(título)",
+                saida: "=== DESAFIO 1 - Rotina para Acordar ===",
+                explanation: "O título do desafio é exibido no console"
               },
               {
                 step: 4,
-                call: "fibonacci(2)",
-                n: 2,
-                return: "fibonacci(1) + fibonacci(0)",
-                explanation: "Para calcular fibonacci(2), precisamos de fibonacci(1) e fibonacci(0)"
+                call: "desafio1.forEach() - primeira iteração",
+                index: 0,
+                passo: "Ouço o despertador tocar",
+                saida: "1. Ouço o despertador tocar",
+                explanation: "O primeiro elemento do array (índice 0) é processado e exibido com o número 1"
               },
               {
                 step: 5,
-                call: "fibonacci(1)",
-                n: 1,
-                return: "1",
-                explanation: "Caso base: fibonacci(1) = 1"
+                call: "desafio1.forEach() - segunda iteração",
+                index: 1,
+                passo: "Sinto minha consciência sair do modo hibernação",
+                saida: "2. Sinto minha consciência sair do modo hibernação",
+                explanation: "O segundo elemento do array (índice 1) é processado e exibido com o número 2"
               },
               {
                 step: 6,
-                call: "fibonacci(0)",
-                n: 0,
-                return: "0",
-                explanation: "Caso base: fibonacci(0) = 0"
+                call: "desafio1.forEach() - iterações subsequentes",
+                explanation: "Os demais elementos do array são processados e exibidos sequencialmente"
               },
               {
                 step: 7,
-                call: "fibonacci(2) (resultado)",
-                n: 2,
-                return: "1 + 0 = 1",
-                explanation: "fibonacci(2) = fibonacci(1) + fibonacci(0) = 1 + 0 = 1"
+                call: "console.log(\"\\n\")",
+                explanation: "Uma linha em branco é adicionada após a listagem dos passos"
               },
               {
                 step: 8,
-                call: "fibonacci(1) (novamente)",
-                n: 1,
-                return: "1",
-                explanation: "Caso base: fibonacci(1) = 1"
-              },
-              {
-                step: 9,
-                call: "fibonacci(3) (resultado)",
-                n: 3,
-                return: "1 + 1 = 2",
-                explanation: "fibonacci(3) = fibonacci(2) + fibonacci(1) = 1 + 1 = 2"
-              },
-              {
-                step: 10,
-                call: "fibonacci(2) (novamente)",
-                n: 2,
-                return: "1",
-                explanation: "Já calculado: fibonacci(2) = 1"
-              },
-              {
-                step: 11,
-                call: "fibonacci(4) (resultado)",
-                n: 4,
-                return: "2 + 1 = 3",
-                explanation: "fibonacci(4) = fibonacci(3) + fibonacci(2) = 2 + 1 = 3"
-              },
-              {
-                step: 12,
-                call: "fibonacci(3) (novamente)",
-                n: 3,
-                return: "2",
-                explanation: "Já calculado: fibonacci(3) = 2"
-              },
-              {
-                step: 13,
-                call: "fibonacci(5) (resultado)",
-                n: 5,
-                return: "3 + 2 = 5",
-                explanation: "fibonacci(5) = fibonacci(4) + fibonacci(3) = 3 + 2 = 5"
+                call: "Fim da IIFE",
+                explanation: "A função anônima autoexecutável termina sua execução"
               }
             ]
           },
