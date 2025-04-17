@@ -545,6 +545,149 @@ console.log("Via de Emissão:", dadosRG.viaEmissao, "- Tipo:", typeof dadosRG.vi
             ]
           }
         ]
+      },
+      {
+        id: "dia2-desafio2",
+        title: "Tipos em um Formulário",
+        versions: [
+          {
+            id: "dia2-desafio2-v1",
+            title: "Formulário da Caixa",
+            statement: `<h2>DESAFIO 02: Identificando tipos em um formulário da Caixa</h2>
+                        <p>Nesse desafio quero que você classifique os tipos de dados desse formulário que é utilizado para atualização de cadastro de empresas da Caixa.</p>
+                        <p>Pra começar o "Nome da firma ou Razão Social" é um texto (uma string); seguindo do "CNPJ" que é uma sequência de números 14, sendo que os 2 últimos são dígitos verificadores; a "Receita Fiscal - Último Exercício Encerrado" e "Receita Fiscal - Últimos 12 Meses" são valores monetários, ou seja números com casas decimais; o "Ano Referência" também numérico, porém inteiro; assim como a "Quantidade de Meses".</p>`,
+            code: `// DESAFIO 02: Identificando tipos em um formulário da Caixa
+
+const dadosFormulario = {
+  razaoSocial: "Padaria Pão Quente Ltda.",
+  nomeFantasia: "Pão Quente",
+  cnpj: "12.345.678/0001-99",
+  receitaFiscal: 125000.75,
+  anoReferencia: 2023,
+  quantidadeMeses: 12,
+  endereco: "Rua das Flores, 150 - Centro",
+  cep: "12345-678",
+  municipio: "São Paulo",
+  uf: "SP",
+  telefone: "(11) 99888-7766",
+  email: "contato@paoquente.com",
+  naturezaJuridica: "Sociedade Empresária Limitada",
+  dataAbertura: new Date("2015-06-10")
+};
+
+console.log("=== DADOS DO FORMULÁRIO COM typeof e instanceof ===\\n");
+
+Object.keys(dadosFormulario).forEach((campo) => {
+  const valor = dadosFormulario[campo];
+  const tipo = typeof valor;
+  const tipoFinal = (valor instanceof Date) ? "Date (objeto de data)" : tipo;
+
+  console.log(\`\${campo.toUpperCase()}:\\nValor: \${valor}\\nTipo detectado: \${tipoFinal}\\n\`);
+});`,
+            explanation: `<p>Este código demonstra como podemos representar e analisar os tipos de dados encontrados em um formulário de cadastro de empresas da Caixa Econômica Federal usando JavaScript.</p>
+                        
+                        <p>Criamos um objeto chamado <code>dadosFormulario</code> que contém várias propriedades representando os campos típicos de um cadastro empresarial:</p>
+                        
+                        <ul>
+                            <li><strong>Strings (texto)</strong>: Utilizadas para representar a maioria dos campos como razão social, nome fantasia, CNPJ, endereço, CEP, município, UF, telefone, email e natureza jurídica. Mesmo que alguns desses campos possam conter números (como CNPJ, CEP e telefone), eles são armazenados como texto devido à formatação com pontos, traços e outros caracteres especiais.</li>
+                            <li><strong>Numbers (números)</strong>: Usados para valores numéricos como receita fiscal (número com decimais/float), ano de referência (número inteiro) e quantidade de meses (número inteiro).</li>
+                            <li><strong>Date (data)</strong>: Para a data de abertura da empresa, utilizamos o objeto <code>Date</code> que é especializado para manipulação de datas em JavaScript.</li>
+                        </ul>
+                        
+                        <p>Na segunda parte do código, utilizamos <code>Object.keys()</code> para iterar sobre todas as propriedades do objeto <code>dadosFormulario</code> e, para cada campo, exibimos:</p>
+                        
+                        <ul>
+                            <li>O nome do campo (em maiúsculas)</li>
+                            <li>O valor armazenado no campo</li>
+                            <li>O tipo de dado detectado, utilizando duas técnicas de JavaScript:
+                                <ul>
+                                    <li><code>typeof</code>: Operador que retorna uma string indicando o tipo de dado primitivo</li>
+                                    <li><code>instanceof</code>: Operador que verifica se um objeto é instância de uma determinada classe (neste caso, verificamos se o valor é uma instância da classe <code>Date</code>)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <p>Esta análise de tipos é fundamental na programação por várias razões:</p>
+                        
+                        <ul>
+                            <li>Validação de dados: garantir que os dados inseridos nos formulários correspondam aos tipos esperados</li>
+                            <li>Armazenamento adequado: definir os tipos de campos em bancos de dados</li>
+                            <li>Manipulação correta: realizar operações apropriadas para cada tipo de dado</li>
+                        </ul>
+                        
+                        <p>A detecção de tipos em JavaScript tem algumas peculiaridades. Por exemplo, o operador <code>typeof</code> retorna "object" para arrays e objetos de data (como <code>Date</code>), por isso precisamos usar técnicas adicionais como <code>instanceof</code> para identificação mais precisa de certos tipos de objetos.</p>`,
+            trace: [
+              {
+                step: 1,
+                call: "Declaração do objeto dadosFormulario",
+                explanation: "Criamos um objeto com várias propriedades representando os campos de um formulário da Caixa"
+              },
+              {
+                step: 2,
+                call: "console.log(título)",
+                saida: "=== DADOS DO FORMULÁRIO COM typeof e instanceof ===",
+                explanation: "Exibimos o título da nossa análise"
+              },
+              {
+                step: 3,
+                call: "Object.keys(dadosFormulario)",
+                resultado: ["razaoSocial", "nomeFantasia", "cnpj", "receitaFiscal", "anoReferencia", "quantidadeMeses", "endereco", "cep", "municipio", "uf", "telefone", "email", "naturezaJuridica", "dataAbertura"],
+                explanation: "Obtemos um array com todos os nomes de propriedades do objeto dadosFormulario"
+              },
+              {
+                step: 4,
+                call: "forEach() - primeira iteração: razaoSocial",
+                campo: "razaoSocial",
+                valor: "Padaria Pão Quente Ltda.",
+                tipo: "string",
+                tipoFinal: "string",
+                saida: "RAZAOSOCIAL:\nValor: Padaria Pão Quente Ltda.\nTipo detectado: string",
+                explanation: "Verificamos o tipo da propriedade razaoSocial e exibimos as informações"
+              },
+              {
+                step: 5,
+                call: "forEach() - segunda iteração: nomeFantasia",
+                campo: "nomeFantasia",
+                valor: "Pão Quente",
+                tipo: "string",
+                tipoFinal: "string",
+                saida: "NOMEFANTASIA:\nValor: Pão Quente\nTipo detectado: string",
+                explanation: "Verificamos o tipo da propriedade nomeFantasia e exibimos as informações"
+              },
+              {
+                step: 6,
+                call: "forEach() - iterações subsequentes para campos tipo string",
+                explanation: "O processo se repete para os outros campos de texto como cnpj, endereco, cep, etc."
+              },
+              {
+                step: 7,
+                call: "forEach() - iteração para receitaFiscal",
+                campo: "receitaFiscal",
+                valor: 125000.75,
+                tipo: "number",
+                tipoFinal: "number",
+                saida: "RECEITAFISCAL:\nValor: 125000.75\nTipo detectado: number",
+                explanation: "Verificamos o tipo da propriedade receitaFiscal (um número com casas decimais) e exibimos as informações"
+              },
+              {
+                step: 8,
+                call: "forEach() - iterações para outros campos numéricos",
+                explanation: "O processo se repete para anoReferencia e quantidadeMeses, que também são números"
+              },
+              {
+                step: 9,
+                call: "forEach() - iteração para dataAbertura",
+                campo: "dataAbertura",
+                valor: "Thu Jun 10 2015 00:00:00 GMT+0000 (GMT)",
+                tipo: "object",
+                instanceof: true,
+                tipoFinal: "Date (objeto de data)",
+                saida: "DATAABERTURA:\nValor: Thu Jun 10 2015 00:00:00 GMT+0000 (GMT)\nTipo detectado: Date (objeto de data)",
+                explanation: "Para a data, typeof retorna 'object', mas verificamos com instanceof Date que é um objeto de data e exibimos a informação correta"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
