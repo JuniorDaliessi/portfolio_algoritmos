@@ -3691,7 +3691,8 @@ if (isNaN(valorInicial) || valorInicial <= 0) {
   
   console.log("\\nSerão necessários " + anos + " anos para o investimento dobrar de valor.");
 }`,
-            explanation: `<p>Este programa calcula quanto tempo levará para um investimento inicial dobrar de valor, com base em uma taxa de juros anual específica.</p>
+            explanation: `<div class="code-explanation">
+            <p>Este programa calcula quanto tempo levará para um investimento inicial dobrar de valor, com base em uma taxa de juros anual específica.</p>
                         <p>O algoritmo segue os seguintes passos:</p>
                         <ol>
                             <li>Solicita ao usuário o valor inicial do investimento e a taxa de juros anual.</li>
@@ -3880,76 +3881,78 @@ if (isNaN(valorCompra) || valorCompra <= 0) {
     console.log("Parcela " + i + ": R$ " + valorParcela.toFixed(2) + " | Saldo restante: R$ " + saldoRestante.toFixed(2));
   }
 }`,
-            explanation: `<p>Este programa simula uma compra parcelada com juros compostos, mostrando o valor de cada parcela e o saldo devedor após cada pagamento. Vamos analisar o código linha por linha:</p>
+            explanation: `<div class="code-explanation">
+<p>Este programa simula uma compra parcelada com juros compostos, mostrando o valor de cada parcela e o saldo devedor após cada pagamento. Vamos analisar o código linha por linha:</p>
                         
-                        <h3>1. Entrada de dados</h3>
-                        <pre><code>let valorCompraInput = prompt("Digite o valor total da compra:");</code></pre>
-                        <p>Solicita ao usuário que digite o valor total da compra e armazena a resposta como string na variável <code>valorCompraInput</code>.</p>
+<h3>1. Entrada de dados</h3>
+<pre><code>let valorCompraInput = prompt("Digite o valor total da compra:");</code></pre>
+<p>Solicita ao usuário que digite o valor total da compra e armazena a resposta como string na variável <code>valorCompraInput</code>.</p>
                         
-                        <pre><code>let taxaInput = prompt("Digite a taxa de juros por parcela (em %):");</code></pre>
-                        <p>Solicita a taxa de juros por parcela em porcentagem e armazena na variável <code>taxaInput</code>.</p>
+<pre><code>let taxaInput = prompt("Digite a taxa de juros por parcela (em %):");</code></pre>
+<p>Solicita a taxa de juros por parcela em porcentagem e armazena na variável <code>taxaInput</code>.</p>
                         
-                        <pre><code>let parcelasInput = prompt("Digite a quantidade de parcelas:");</code></pre>
-                        <p>Solicita a quantidade de parcelas desejada e armazena na variável <code>parcelasInput</code>.</p>
+<pre><code>let parcelasInput = prompt("Digite a quantidade de parcelas:");</code></pre>
+<p>Solicita a quantidade de parcelas desejada e armazena na variável <code>parcelasInput</code>.</p>
                         
-                        <h3>2. Conversão das entradas</h3>
-                        <pre><code>let valorCompra = parseFloat(valorCompraInput);</code></pre>
-                        <p>Converte a string <code>valorCompraInput</code> em um número de ponto flutuante usando <code>parseFloat()</code>.</p>
+<h3>2. Conversão das entradas</h3>
+<pre><code>let valorCompra = parseFloat(valorCompraInput);</code></pre>
+<p>Converte a string <code>valorCompraInput</code> em um número de ponto flutuante usando <code>parseFloat()</code>.</p>
                         
-                        <pre><code>let taxaPercent = parseFloat(taxaInput);</code></pre>
-                        <p>Converte a taxa de juros de string para número.</p>
+<pre><code>let taxaPercent = parseFloat(taxaInput);</code></pre>
+<p>Converte a taxa de juros de string para número.</p>
                         
-                        <pre><code>let numParcelas = parseInt(parcelasInput);</code></pre>
-                        <p>Converte a quantidade de parcelas para um número inteiro usando <code>parseInt()</code>.</p>
+<pre><code>let numParcelas = parseInt(parcelasInput);</code></pre>
+<p>Converte a quantidade de parcelas para um número inteiro usando <code>parseInt()</code>.</p>
                         
-                        <h3>3. Validação das entradas</h3>
-                        <pre><code>if (isNaN(valorCompra) || valorCompra <= 0) {
+<h3>3. Validação das entradas</h3>
+<pre><code>if (isNaN(valorCompra) || valorCompra <= 0) {
   console.log("Valor da compra inválido.");
 } else if (isNaN(taxaPercent) || taxaPercent < 0) {
   console.log("Taxa de juros inválida.");
 } else if (isNaN(numParcelas) || numParcelas <= 0) {
   console.log("Quantidade de parcelas inválida.");
 } else {</code></pre>
-                        <p>Verifica se as entradas são números válidos e positivos. A função <code>isNaN()</code> verifica se o valor não é um número. Se algum valor for inválido, exibe uma mensagem de erro correspondente.</p>
+<p>Verifica se as entradas são números válidos e positivos. A função <code>isNaN()</code> verifica se o valor não é um número. Se algum valor for inválido, exibe uma mensagem de erro correspondente.</p>
                         
-                        <h3>4. Cálculo dos valores</h3>
-                        <pre><code>  // Converte a taxa percentual para decimal
+<h3>4. Cálculo dos valores</h3>
+<pre><code>  // Converte a taxa percentual para decimal
   let taxa = taxaPercent / 100;</code></pre>
-                        <p>Converte a taxa de juros de percentual para decimal dividindo por 100 (ex.: 2% = 0.02).</p>
+<p>Converte a taxa de juros de percentual para decimal dividindo por 100 (ex.: 2% = 0.02).</p>
                         
-                        <pre><code>  // Calcula o valor final com juros compostos:
+<pre><code>  // Calcula o valor final com juros compostos:
   // Fórmula: ValorFinal = valorCompra * (1 + taxa)^(numParcelas)
   let valorFinal = valorCompra * Math.pow(1 + taxa, numParcelas);</code></pre>
-                        <p>Calcula o valor final da compra com juros compostos usando a fórmula matemática <code>ValorFinal = ValorInicial * (1 + taxa)^períodos</code>. A função <code>Math.pow()</code> calcula a potência (1 + taxa) elevado ao número de parcelas.</p>
+<p>Calcula o valor final da compra com juros compostos usando a fórmula matemática <code>ValorFinal = ValorInicial * (1 + taxa)^períodos</code>. A função <code>Math.pow()</code> calcula a potência (1 + taxa) elevado ao número de parcelas.</p>
                         
-                        <pre><code>  // Calcula o valor fixo de cada parcela
+<pre><code>  // Calcula o valor fixo de cada parcela
   let valorParcela = valorFinal / numParcelas;</code></pre>
-                        <p>Determina o valor fixo de cada parcela dividindo o valor final pelo número de parcelas.</p>
+<p>Determina o valor fixo de cada parcela dividindo o valor final pelo número de parcelas.</p>
                         
-                        <h3>5. Exibição dos resultados iniciais</h3>
-                        <pre><code>  console.log("=== DESAFIO 04: Compra Parcelada com Juros ===\\n");
+<h3>5. Exibição dos resultados iniciais</h3>
+<pre><code>  console.log("=== DESAFIO 04: Compra Parcelada com Juros ===\\n");
   console.log("Valor total da compra: R$ " + valorCompra.toFixed(2));
   console.log("Taxa de juros por parcela: " + taxaPercent.toFixed(2) + "%");
   console.log("Quantidade de parcelas: " + numParcelas);
   console.log("Valor total com juros: R$ " + valorFinal.toFixed(2));
   console.log("Valor de cada parcela: R$ " + valorParcela.toFixed(2));
   console.log("");</code></pre>
-                        <p>Exibe os detalhes da simulação: valor da compra, taxa de juros, número de parcelas, valor total com juros e valor de cada parcela. O método <code>toFixed(2)</code> formata os valores com duas casas decimais.</p>
+<p>Exibe os detalhes da simulação: valor da compra, taxa de juros, número de parcelas, valor total com juros e valor de cada parcela. O método <code>toFixed(2)</code> formata os valores com duas casas decimais.</p>
                         
-                        <h3>6. Simulação do pagamento das parcelas</h3>
-                        <pre><code>  // Exibe o saldo devedor após o pagamento de cada parcela
+<h3>6. Simulação do pagamento das parcelas</h3>
+<pre><code>  // Exibe o saldo devedor após o pagamento de cada parcela
   for (let i = 1; i <= numParcelas; i++) {
     let saldoRestante = valorFinal - (valorParcela * i);
     console.log("Parcela " + i + ": R$ " + valorParcela.toFixed(2) + " | Saldo restante: R$ " + saldoRestante.toFixed(2));
   }
 }</code></pre>
-                        <p>Utiliza um loop <code>for</code> que itera de 1 até o número de parcelas. Para cada iteração:</p>
-                        <ul>
-                            <li>Calcula o saldo devedor restante após o pagamento da parcela atual, subtraindo do valor final o produto do valor da parcela pelo número de parcelas já pagas.</li>
-                            <li>Exibe o número da parcela, o valor da parcela e o saldo restante após o pagamento.</li>
-                        </ul>
+<p>Utiliza um loop <code>for</code> que itera de 1 até o número de parcelas. Para cada iteração:</p>
+<ul>
+    <li>Calcula o saldo devedor restante após o pagamento da parcela atual, subtraindo do valor final o produto do valor da parcela pelo número de parcelas já pagas.</li>
+    <li>Exibe o número da parcela, o valor da parcela e o saldo restante após o pagamento.</li>
+</ul>
                         
-                        <p>Este programa é um exemplo prático de como os juros compostos afetam o valor final de uma compra parcelada. Ele mostra claramente a amortização da dívida ao longo do tempo, permitindo que o usuário visualize como cada pagamento reduz o saldo devedor até chegar a zero na última parcela.</p>`,
+<p>Este programa é um exemplo prático de como os juros compostos afetam o valor final de uma compra parcelada. Ele mostra claramente a amortização da dívida ao longo do tempo, permitindo que o usuário visualize como cada pagamento reduz o saldo devedor até chegar a zero na última parcela.</p>
+</div>`,
             trace: [
               {
                 step: 1,
