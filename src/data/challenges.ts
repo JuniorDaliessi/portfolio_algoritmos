@@ -3198,6 +3198,219 @@ if (isNaN(investimento) || investimento <= 0) {
             ]
           }
         ]
+      },
+      {
+        id: "dia5-desafio2",
+        title: "Contagem Regressiva para Lançamento",
+        versions: [
+          {
+            id: "dia5-desafio2-v1",
+            title: "Contagem Regressiva com Avisos",
+            statement: `<h2>DESAFIO 02: Contagem regressiva para lançamento de foguete</h2>
+                        <p>Imagine que você é um engenheiro da NASA e está prestes a lançar um foguete. Você precisa fazer uma contagem regressiva a partir de 10 até o lançamento. No entanto, quando chegar nos últimos 3 segundos, é importante dar um aviso, então inclua o texto "Atenção!" junto à contagem. Quando a contagem terminar mostre a mensagem: "Lançamento do foguete!"</p>`,
+            code: `// === DESAFIO 02: Contagem regressiva com for e espera de meio segundo ===
+//
+// O objetivo é fazer uma contagem regressiva a partir de 10 até o lançamento,
+// aguardando 0,5 segundo entre cada número, utilizando um loop for.
+// Quando chegar nos últimos 3 segundos, incluir "Atenção!" junto à contagem.
+// Ao chegar em 0, mostrar a mensagem "Lançamento do foguete!".
+
+console.log("=== DESAFIO 02: Contagem regressiva ===\\n");
+
+for (let i = 10; i >= 0; i--) {
+  // O delay é calculado para que o primeiro número (10) seja exibido imediatamente,
+  // e cada iteração subsequente espere 0,5 segundo a mais.
+  setTimeout(() => {
+    if (i === 0) {
+      console.log("Lançamento do foguete!");
+    } else if (i <= 3) {
+      console.log(i + " ... Atenção!");
+    } else {
+      console.log(i);
+    }
+  }, (10 - i) * 500);
+}`,
+            explanation: `<p>Este código implementa uma contagem regressiva de lançamento de foguete com efeitos de timing e alertas condicionais.</p>
+
+                        <div class="code-explanation">
+                          <h4>Análise detalhada linha por linha:</h4>
+                          
+                          <pre><code>// === DESAFIO 02: Contagem regressiva com for e espera de meio segundo ===</code></pre>
+                          <p>Comentário de título que identifica o desafio e seu propósito específico.</p>
+                          
+                          <pre><code>//
+// O objetivo é fazer uma contagem regressiva a partir de 10 até o lançamento,
+// aguardando 0,5 segundo entre cada número, utilizando um loop for.
+// Quando chegar nos últimos 3 segundos, incluir "Atenção!" junto à contagem.
+// Ao chegar em 0, mostrar a mensagem "Lançamento do foguete!".</code></pre>
+                          <p>Comentários que descrevem detalhadamente o comportamento esperado do programa:</p>
+                          <ul>
+                            <li>Explica a contagem regressiva começando em 10</li>
+                            <li>Define o intervalo de tempo entre cada número (0,5 segundo)</li>
+                            <li>Especifica o comportamento especial para os últimos 3 segundos</li>
+                            <li>Indica a mensagem final ao terminar a contagem</li>
+                          </ul>
+                          
+                          <pre><code>console.log("=== DESAFIO 02: Contagem regressiva ===\\n");</code></pre>
+                          <p>Exibe o título do programa no console:</p>
+                          <ul>
+                            <li>Marca o início da execução do programa</li>
+                            <li>O <code>\\n</code> adiciona uma quebra de linha após o título</li>
+                          </ul>
+                          
+                          <pre><code>for (let i = 10; i >= 0; i--) {</code></pre>
+                          <p>Inicia um loop decrescente de 10 até 0:</p>
+                          <ul>
+                            <li>Declara e inicializa a variável <code>i</code> com o valor 10</li>
+                            <li>Define a condição de continuação (<code>i >= 0</code>)</li>
+                            <li>Decrementa a variável <code>i</code> após cada iteração com <code>i--</code></li>
+                            <li>A contagem regressiva inclui o zero, totalizando 11 números (10 até 0)</li>
+                          </ul>
+                          
+                          <pre><code>  // O delay é calculado para que o primeiro número (10) seja exibido imediatamente,
+  // e cada iteração subsequente espere 0,5 segundo a mais.
+  setTimeout(() => {</code></pre>
+                          <p>Utiliza a função setTimeout para criar um atraso progressivo em cada iteração:</p>
+                          <ul>
+                            <li>O comentário explica a lógica do cálculo do tempo de espera</li>
+                            <li>O <code>setTimeout</code> agenda a execução da função callback após um determinado tempo</li>
+                            <li>A função passada como primeiro argumento será executada após o tempo especificado</li>
+                          </ul>
+                          
+                          <pre><code>    if (i === 0) {
+      console.log("Lançamento do foguete!");
+    }</code></pre>
+                          <p>Primeira condição: verifica se chegou ao final da contagem:</p>
+                          <ul>
+                            <li>Quando <code>i</code> é igual a 0, a contagem terminou</li>
+                            <li>Exibe a mensagem especial "Lançamento do foguete!"</li>
+                            <li>Esta é a última mensagem exibida, indicando o clímax do programa</li>
+                          </ul>
+                          
+                          <pre><code>    else if (i <= 3) {
+      console.log(i + " ... Atenção!");
+    }</code></pre>
+                          <p>Segunda condição: verifica se está nos últimos 3 segundos:</p>
+                          <ul>
+                            <li>Quando <code>i</code> é menor ou igual a 3 (3, 2 ou 1)</li>
+                            <li>Exibe o número seguido do aviso "... Atenção!"</li>
+                            <li>Este alerta visual destaca os momentos críticos antes do lançamento</li>
+                          </ul>
+                          
+                          <pre><code>    else {
+      console.log(i);
+    }</code></pre>
+                          <p>Terceira condição (default): para os outros números:</p>
+                          <ul>
+                            <li>Para os valores iniciais da contagem (10 até 4)</li>
+                            <li>Exibe apenas o número, sem mensagens adicionais</li>
+                          </ul>
+                          
+                          <pre><code>  }, (10 - i) * 500);</code></pre>
+                          <p>Define o tempo de espera para cada número da contagem:</p>
+                          <ul>
+                            <li>A fórmula <code>(10 - i) * 500</code> calcula o atraso em milissegundos</li>
+                            <li>Para <code>i = 10</code>: (10 - 10) * 500 = 0ms (exibição imediata)</li>
+                            <li>Para <code>i = 9</code>: (10 - 9) * 500 = 500ms (espera meio segundo)</li>
+                            <li>Para <code>i = 0</code>: (10 - 0) * 500 = 5000ms (espera 5 segundos)</li>
+                            <li>Isso cria um intervalo constante de 0,5 segundo entre cada número</li>
+                          </ul>
+                          
+                          <pre><code>}</code></pre>
+                          <p>Fecha o bloco do loop for:</p>
+                          <ul>
+                            <li>É importante observar que todas as chamadas de <code>setTimeout</code> são agendadas quase simultaneamente</li>
+                            <li>O loop termina rapidamente, mas as funções callback serão executadas nos momentos calculados</li>
+                            <li>A execução do programa continua após o loop, enquanto os timeouts estão pendentes</li>
+                          </ul>
+                        </div>
+
+                        <p>Este código demonstra conceitos importantes de programação JavaScript:</p>
+                        <ul>
+                            <li><strong>Loops decrescentes:</strong> Utilizando um loop for para contar de forma regressiva</li>
+                            <li><strong>Programação assíncrona:</strong> Uso de setTimeout para criar atrasos controlados</li>
+                            <li><strong>Estruturas condicionais:</strong> Aplicação de if/else para comportamentos específicos baseados no valor do contador</li>
+                            <li><strong>Cálculo de timing:</strong> Fórmula para gerar intervalos constantes entre as exibições</li>
+                            <li><strong>Concatenação de strings:</strong> Junção de números e texto para criar mensagens dinâmicas</li>
+                        </ul>
+
+                        <p>O programa simula de forma eficaz uma contagem regressiva real, criando suspense com os avisos nos momentos finais antes do lançamento.</p>`,
+            trace: [
+              {
+                step: 1,
+                call: "Início do programa",
+                saida: "=== DESAFIO 02: Contagem regressiva ===\n",
+                explanation: "O programa inicia exibindo o título no console"
+              },
+              {
+                step: 2,
+                call: "Loop for - agendando chamadas setTimeout",
+                explanation: "O loop for executa 11 iterações (de i=10 até i=0), agendando cada exibição com um atraso calculado"
+              },
+              {
+                step: 3,
+                call: "Primeira exibição (i=10) - tempo: 0ms",
+                calculo: "(10 - 10) * 500 = 0ms",
+                saida: "10",
+                explanation: "O primeiro número (10) é exibido imediatamente sem atraso"
+              },
+              {
+                step: 4,
+                call: "Segunda exibição (i=9) - tempo: 500ms",
+                calculo: "(10 - 9) * 500 = 500ms",
+                saida: "9",
+                explanation: "Após 0,5 segundo, o número 9 é exibido"
+              },
+              {
+                step: 5,
+                call: "Terceira exibição (i=8) - tempo: 1000ms",
+                calculo: "(10 - 8) * 500 = 1000ms",
+                saida: "8",
+                explanation: "Após 1 segundo, o número 8 é exibido"
+              },
+              {
+                step: 6,
+                call: "Quarta exibição (i=7) - tempo: 1500ms",
+                calculo: "(10 - 7) * 500 = 1500ms",
+                saida: "7",
+                explanation: "Após 1,5 segundos, o número 7 é exibido"
+              },
+              {
+                step: 7,
+                call: "Quinta a sétima exibição",
+                explanation: "O processo continua com os números 6, 5 e 4, cada um aparecendo após mais 0,5 segundo"
+              },
+              {
+                step: 8,
+                call: "Oitava exibição (i=3) - tempo: 3500ms",
+                calculo: "(10 - 3) * 500 = 3500ms",
+                saida: "3 ... Atenção!",
+                explanation: "Após 3,5 segundos, o número 3 é exibido com o aviso de atenção"
+              },
+              {
+                step: 9,
+                call: "Nona exibição (i=2) - tempo: 4000ms",
+                calculo: "(10 - 2) * 500 = 4000ms",
+                saida: "2 ... Atenção!",
+                explanation: "Após 4 segundos, o número 2 é exibido com o aviso de atenção"
+              },
+              {
+                step: 10,
+                call: "Décima exibição (i=1) - tempo: 4500ms",
+                calculo: "(10 - 1) * 500 = 4500ms",
+                saida: "1 ... Atenção!",
+                explanation: "Após 4,5 segundos, o número 1 é exibido com o aviso de atenção"
+              },
+              {
+                step: 11,
+                call: "Exibição final (i=0) - tempo: 5000ms",
+                calculo: "(10 - 0) * 500 = 5000ms",
+                saida: "Lançamento do foguete!",
+                explanation: "Após 5 segundos, a mensagem final de lançamento é exibida, completando a contagem regressiva"
+              }
+            ]
+          }
+        ]
       }
     ]
   }
