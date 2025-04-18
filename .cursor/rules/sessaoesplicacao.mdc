@@ -1,0 +1,139 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+para a sessão explicação da pagina solução use sempre o exemplo a seguir adapitando para o codigo em contexto 
+
+"<div class="solution-container dracula-theme"><div class="code-container" role="region" aria-label="Código da solução"><div class="code-header"><h3>Solução</h3><div class="code-actions"><button class="copy-btn " aria-label="Copiar código" title="Copiar código"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M16 4H18C19.1046 4 20 4.89543 20 6V20C20 21.1046 19.1046 22 18 22H6C4.89543 22 4 21.1046 4 20V6C4 4.89543 4.89543 4 6 4H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M15 2H9C8.44772 2 8 2.44772 8 3V5C8 5.55228 8.44772 6 9 6H15C15.5523 6 16 5.55228 16 5V3C16 2.44772 15.5523 2 15 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Copiar código</span></button></div></div><div class="code-scroll"><pre class="dracula-vscode-block language-javascript" tabindex="0"><code class="dracula-vscode language-javascript" tabindex="0"><span class="token comment">// === DESAFIO 02: Contagem regressiva com espera de meio segundo ===</span>
+<span class="token comment">//</span>
+<span class="token comment">// O objetivo é fazer uma contagem regressiva a partir de 10 até o lançamento,</span>
+<span class="token comment">// aguardando 0,5 segundo entre cada número.</span>
+<span class="token comment">// Quando chegar nos últimos 3 segundos, incluir "Atenção!" junto à contagem.</span>
+<span class="token comment">// Ao chegar em 0, mostrar a mensagem "Lançamento do foguete!".</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"=== DESAFIO 02: Contagem regressiva ===\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> count <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Cria um intervalo que executa a cada 500 milissegundos (0,5 segundo)</span>
+<span class="token keyword">const</span> intervalo <span class="token operator">=</span> <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>count <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Lançamento do foguete!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">clearInterval</span><span class="token punctuation">(</span>intervalo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>count <span class="token operator">&lt;=</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>count <span class="token operator">+</span> <span class="token string">" ... Atenção!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  count<span class="token operator">--</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div></div><div class="explanation-container expanded" role="region" aria-label="Explicação da solução"><div class="explanation-header" role="button" tabindex="0" aria-expanded="true" aria-controls="explanation-content"><h3>Explicação</h3><div class="explanation-toggle" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 15L12 8L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div></div><div id="explanation-content" class="explanation-content"><div><p class="explanation-paragraph">Este código implementa uma contagem regressiva de lançamento de foguete usando a função setInterval para controlar o tempo.</p>
+
+                        <div class="code-explanation analysis-section dracula-theme">
+                          <h4 class="explanation-subtitle">Análise detalhada linha por linha:</h4>
+                          
+                          <pre class="explanation-code-block dracula-vscode"><code class="explanation-code dracula-vscode">// === DESAFIO 02: Contagem regressiva com espera de meio segundo ===</code></pre>
+                          <p class="explanation-paragraph">Comentário de título que identifica o desafio e seu propósito.</p>
+                          
+                          <pre class="explanation-code-block dracula-vscode"><code class="explanation-code dracula-vscode">//
+// O objetivo é fazer uma contagem regressiva a partir de 10 até o lançamento,
+// aguardando 0,5 segundo entre cada número.
+// Quando chegar nos últimos 3 segundos, incluir "Atenção!" junto à contagem.
+// Ao chegar em 0, mostrar a mensagem "Lançamento do foguete!".</code></pre>
+                          <p class="explanation-paragraph">Comentários que descrevem o comportamento esperado do programa:</p>
+                          <ul class="explanation-list">
+                            <li class="explanation-item">Explica a contagem regressiva começando em 10</li>
+                            <li class="explanation-item">Define o intervalo de tempo entre cada número (0,5 segundo)</li>
+                            <li class="explanation-item">Especifica o comportamento especial para os últimos 3 segundos</li>
+                            <li class="explanation-item">Indica a mensagem final ao terminar a contagem</li>
+                          </ul>
+                          
+                          <pre class="explanation-code-block dracula-vscode"><code class="explanation-code dracula-vscode">console.log("=== DESAFIO 02: Contagem regressiva ===\n");</code></pre>
+                          <p class="explanation-paragraph">Exibe o título do programa no console:</p>
+                          <ul class="explanation-list">
+                            <li class="explanation-item">Marca o início da execução do programa</li>
+                            <li class="explanation-item">O <code class="explanation-code dracula-vscode">\n</code> adiciona uma quebra de linha após o título</li>
+                          </ul>
+                          
+                          <pre class="explanation-code-block dracula-vscode"><code class="explanation-code dracula-vscode">let count = 10;</code></pre>
+                          <p class="explanation-paragraph">Inicializa a variável de contagem:</p>
+                          <ul class="explanation-list">
+                            <li class="explanation-item">Declara e inicializa a variável <code class="explanation-code dracula-vscode">count</code> com o valor 10</li>
+                            <li class="explanation-item">Esta variável será decrementada a cada intervalo até chegar a zero</li>
+                            <li class="explanation-item">Diferente da versão anterior, aqui usamos uma variável externa ao invés de uma variável de iteração de loop</li>
+                          </ul>
+                          
+                          <pre class="explanation-code-block dracula-vscode"><code class="explanation-code dracula-vscode">// Cria um intervalo que executa a cada 500 milissegundos (0,5 segundo)
+const intervalo = setInterval(function() {</code></pre>
+                          <p class="explanation-paragraph">Configura um temporizador com intervalo fixo:</p>
+                          <ul class="explanation-list">
+                            <li class="explanation-item">A função <code class="explanation-code dracula-vscode">setInterval()</code> executa um código repetidamente em intervalos de tempo iguais</li>
+                            <li class="explanation-item">O primeiro argumento é uma função anônima (callback) que será executada a cada intervalo</li>
+                            <li class="explanation-item">A variável <code class="explanation-code dracula-vscode">intervalo</code> armazena o ID do intervalo para poder cancelá-lo posteriormente</li>
+                            <li class="explanation-item">Esta abordagem é diferente da versão anterior, que usava múltiplos <code class="explanation-code dracula-vscode">setTimeout</code></li>
+                          </ul>
+                          
+                          <pre class="explanation-code-block dracula-vscode"><code class="explanation-code dracula-vscode">  if (count === 0) {
+    console.log("Lançamento do foguete!");
+    clearInterval(intervalo);
+  }</code></pre>
+                          <p class="explanation-paragraph">Primeira condição: verifica se chegou ao final da contagem:</p>
+                          <ul class="explanation-list">
+                            <li class="explanation-item">Quando <code class="explanation-code dracula-vscode">count</code> é igual a 0, a contagem terminou</li>
+                            <li class="explanation-item">Exibe a mensagem especial "Lançamento do foguete!"</li>
+                            <li class="explanation-item">O comando <code class="explanation-code dracula-vscode">clearInterval(intervalo)</code> cancela o intervalo, evitando que continue executando</li>
+                            <li class="explanation-item">Este é um ponto crucial: sem cancelar o intervalo, a função continuaria sendo chamada indefinidamente</li>
+                          </ul>
+                          
+                          <pre class="explanation-code-block dracula-vscode"><code class="explanation-code dracula-vscode">  else if (count &lt;= 3) {
+    console.log(count + " ... Atenção!");
+  }</code></pre>
+                          <p class="explanation-paragraph">Segunda condição: verifica se está nos últimos 3 segundos:</p>
+                          <ul class="explanation-list">
+                            <li class="explanation-item">Quando <code class="explanation-code dracula-vscode">count</code> é menor ou igual a 3 (3, 2 ou 1)</li>
+                            <li class="explanation-item">Exibe o número seguido do aviso "... Atenção!"</li>
+                            <li class="explanation-item">Este alerta visual destaca os momentos críticos antes do lançamento</li>
+                          </ul>
+                          
+                          <pre class="explanation-code-block dracula-vscode"><code class="explanation-code dracula-vscode">  else {
+    console.log(count);
+  }</code></pre>
+                          <p class="explanation-paragraph">Terceira condição (default): para os outros números:</p>
+                          <ul class="explanation-list">
+                            <li class="explanation-item">Para os valores iniciais da contagem (10 até 4)</li>
+                            <li class="explanation-item">Exibe apenas o número, sem mensagens adicionais</li>
+                          </ul>
+                          
+                          <pre class="explanation-code-block dracula-vscode"><code class="explanation-code dracula-vscode">  count--;</code></pre>
+                          <p class="explanation-paragraph">Decrementa o contador após cada exibição:</p>
+                          <ul class="explanation-list">
+                            <li class="explanation-item">Reduz o valor de <code class="explanation-code dracula-vscode">count</code> em 1 a cada vez que a função é executada</li>
+                            <li class="explanation-item">Este decremento ocorre após a exibição do valor atual</li>
+                            <li class="explanation-item">Na próxima execução da função de callback, <code class="explanation-code dracula-vscode">count</code> terá um valor menor</li>
+                          </ul>
+                          
+                          <pre class="explanation-code-block dracula-vscode"><code class="explanation-code dracula-vscode">}, 500);</code></pre>
+                          <p class="explanation-paragraph">Define o intervalo de tempo entre as execuções:</p>
+                          <ul class="explanation-list">
+                            <li class="explanation-item">O segundo argumento da função <code class="explanation-code dracula-vscode">setInterval</code> especifica o tempo em milissegundos</li>
+                            <li class="explanation-item">500ms equivale a meio segundo (0,5s)</li>
+                            <li class="explanation-item">A função de callback será executada a cada meio segundo até ser cancelada</li>
+                          </ul>
+                        </div>
+
+                        <p class="explanation-paragraph">Esta implementação difere da primeira versão do desafio nos seguintes aspectos:</p>
+                        <ul class="explanation-list">
+                            <li class="explanation-item"><strong>Método de temporização:</strong> Usa <code class="explanation-code dracula-vscode">setInterval</code> em vez de múltiplos <code class="explanation-code dracula-vscode">setTimeout</code></li>
+                            <li class="explanation-item"><strong>Variável de controle:</strong> Mantém uma variável externa que é modificada a cada execução</li>
+                            <li class="explanation-item"><strong>Finalização:</strong> Precisa explicitamente cancelar o intervalo com <code class="explanation-code dracula-vscode">clearInterval</code></li>
+                            <li class="explanation-item"><strong>Sincronização:</strong> Todas as exibições ocorrem em tempo preciso de 0,5 segundo entre si</li>
+                            <li class="explanation-item"><strong>Execução sequencial:</strong> Cada exibição só ocorre após a anterior ter sido processada</li>
+                        </ul>
+
+                        <p class="explanation-paragraph">As duas abordagens produzem o mesmo resultado visual, mas diferem na implementação técnica. Esta versão com <code class="explanation-code dracula-vscode">setInterval</code> é considerada mais apropriada para contagens regressivas, pois:</p>
+                        <ul class="explanation-list">
+                            <li class="explanation-item">É mais concisa e utiliza menos recursos do sistema</li>
+                            <li class="explanation-item">Garante intervalos precisos entre as exibições</li>
+                            <li class="explanation-item">É mais fácil de adaptar para contagens de duração variável</li>
+                            <li class="explanation-item">Representa melhor o conceito de "pulsos" regulares de tempo</li>
+                        </ul></div></div></div></div>"
