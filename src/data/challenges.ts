@@ -4104,5 +4104,183 @@ if (isNaN(valorCompra) || valorCompra <= 0) {
         ]
       }
     ]
+  },
+  {
+    day: "Dia 6",
+    challenges: [
+      {
+        id: "dia6-desafio1",
+        title: "Calculadora de IMC",
+        versions: [
+          {
+            id: "dia6-desafio1-v1",
+            title: "Calculadora de IMC com Classificação",
+            statement: `<h2>DESAFIO 01: Calcular IMC</h2>
+                        <p>Crie uma função que utiliza o peso e a altura como parâmetros para calcular o IMC de uma pessoa. Só lembrando que o IMC é o peso dividido pela altura ao quadrado.</p>`,
+            code: `// === DESAFIO 01: Calcular IMC com Classificação ===
+//
+// Crie uma função que utilize peso e altura como parâmetros
+// para calcular o IMC (Índice de Massa Corporal) de uma pessoa e
+// determine a classificação conforme a seguinte lógica:
+// - Abaixo de 18.5: Abaixo do peso
+// - De 18.5 até 24.9: Peso normal
+// - De 25 até 29.9: Sobrepeso
+// - 30 ou acima: Obesidade
+
+function calcularIMC(peso, altura) {
+  return peso / (altura * altura);
+}
+
+// Exemplo de uso com input do usuário
+let pesoInput = prompt("Digite seu peso (em kg):");
+let alturaInput = prompt("Digite sua altura (em metros):");
+
+let peso = parseFloat(pesoInput);
+let altura = parseFloat(alturaInput);
+
+if (isNaN(peso) || peso <= 0 || isNaN(altura) || altura <= 0) {
+  console.log("Valor(es) inválido(s). Verifique o peso e a altura informados.");
+} else {
+  let imc = calcularIMC(peso, altura);
+  let classificacao = "";
+  
+  if (imc < 18.5) {
+    classificacao = "Abaixo do peso";
+  } else if (imc < 25) {
+    classificacao = "Peso normal";
+  } else if (imc < 30) {
+    classificacao = "Sobrepeso";
+  } else {
+    classificacao = "Obesidade";
+  }
+  
+  console.log("Seu IMC é: " + imc.toFixed(2) + " - " + classificacao);
+}`,
+            explanation: `<div class="code-explanation">
+<p>Este programa calcula o Índice de Massa Corporal (IMC) de uma pessoa e determina sua classificação baseada em faixas de valores estabelecidas. Vamos analisar o código linha por linha:</p>
+
+<h3>1. Definição da função de cálculo do IMC</h3>
+<pre><code>function calcularIMC(peso, altura) {
+  return peso / (altura * altura);
+}</code></pre>
+<p>Aqui é definida uma função chamada <code>calcularIMC</code> que recebe dois parâmetros: <code>peso</code> e <code>altura</code>. A função retorna o resultado da divisão do peso pelo quadrado da altura, que é a fórmula do IMC.</p>
+
+<h3>2. Entrada de dados</h3>
+<pre><code>let pesoInput = prompt("Digite seu peso (em kg):");</code></pre>
+<p>Solicita ao usuário que digite seu peso em quilogramas e armazena a resposta como string na variável <code>pesoInput</code>.</p>
+
+<pre><code>let alturaInput = prompt("Digite sua altura (em metros):");</code></pre>
+<p>Solicita ao usuário que digite sua altura em metros e armazena a resposta como string na variável <code>alturaInput</code>.</p>
+
+<h3>3. Conversão das entradas</h3>
+<pre><code>let peso = parseFloat(pesoInput);</code></pre>
+<p>Converte a string <code>pesoInput</code> em um número de ponto flutuante usando a função <code>parseFloat()</code> e armazena na variável <code>peso</code>.</p>
+
+<pre><code>let altura = parseFloat(alturaInput);</code></pre>
+<p>Converte a string <code>alturaInput</code> em um número de ponto flutuante e armazena na variável <code>altura</code>.</p>
+
+<h3>4. Validação das entradas</h3>
+<pre><code>if (isNaN(peso) || peso <= 0 || isNaN(altura) || altura <= 0) {
+  console.log("Valor(es) inválido(s). Verifique o peso e a altura informados.");
+} else {</code></pre>
+<p>Verifica se as entradas são números válidos e positivos. A função <code>isNaN()</code> verifica se o valor não é um número. O programa também verifica se os valores são maiores que zero, pois peso e altura não podem ser negativos ou zero. Se algum valor for inválido, exibe uma mensagem de erro.</p>
+
+<h3>5. Cálculo do IMC e classificação</h3>
+<pre><code>  let imc = calcularIMC(peso, altura);</code></pre>
+<p>Chama a função <code>calcularIMC</code> passando os valores de peso e altura como argumentos e armazena o resultado na variável <code>imc</code>.</p>
+
+<pre><code>  let classificacao = "";</code></pre>
+<p>Inicializa uma variável vazia chamada <code>classificacao</code> que será usada para armazenar a categoria do IMC.</p>
+
+<h3>6. Determinação da classificação do IMC</h3>
+<pre><code>  if (imc < 18.5) {
+    classificacao = "Abaixo do peso";
+  } else if (imc < 25) {
+    classificacao = "Peso normal";
+  } else if (imc < 30) {
+    classificacao = "Sobrepeso";
+  } else {
+    classificacao = "Obesidade";
+  }</code></pre>
+<p>Utiliza uma estrutura condicional para determinar a classificação do IMC de acordo com faixas de valores:</p>
+<ul>
+    <li>Se o IMC for menor que 18.5, a classificação é "Abaixo do peso".</li>
+    <li>Se o IMC for entre 18.5 e 24.9, a classificação é "Peso normal".</li>
+    <li>Se o IMC for entre 25 e 29.9, a classificação é "Sobrepeso".</li>
+    <li>Se o IMC for 30 ou maior, a classificação é "Obesidade".</li>
+</ul>
+<p>Note que as condições são verificadas em sequência, então quando encontra a primeira verdadeira, as demais não são verificadas. Por exemplo, se imc = 23, a condição <code>imc < 18.5</code> é falsa, então verifica <code>imc < 25</code>, que é verdadeira, assim a classificação será "Peso normal".</p>
+
+<h3>7. Exibição do resultado</h3>
+<pre><code>  console.log("Seu IMC é: " + imc.toFixed(2) + " - " + classificacao);</code></pre>
+<p>Exibe o resultado do cálculo do IMC formatado com duas casas decimais usando o método <code>toFixed(2)</code>, seguido da classificação correspondente.</p>
+
+<h3>Conceitos aplicados</h3>
+<p>Este programa demonstra vários conceitos importantes de programação:</p>
+<ul>
+    <li><strong>Funções</strong>: Define e utiliza uma função para encapsular a lógica de cálculo do IMC, permitindo sua reutilização.</li>
+    <li><strong>Estruturas condicionais</strong>: Utiliza declarações if-else para validar entradas e classificar o resultado em categorias.</li>
+    <li><strong>Validação de entrada</strong>: Verifica se os valores informados são válidos antes de processar os cálculos.</li>
+    <li><strong>Formatação de saída</strong>: Usa o método toFixed() para formatar o número com precisão específica.</li>
+</ul>
+
+<p>O Índice de Massa Corporal (IMC) é uma medida internacional usada para avaliar o grau de sobrepeso e obesidade. Foi desenvolvido pelo matemático Lambert Quételet no século XIX e é um indicador simples da relação entre peso e altura que é frequentemente usado para identificar possíveis problemas de saúde relacionados ao peso.</p>
+</div>`,
+            trace: [
+              {
+                step: 1,
+                call: "Definição da função",
+                explanation: "A função calcularIMC é definida para receber peso e altura e retornar o IMC calculado"
+              },
+              {
+                step: 2,
+                call: "Entrada de dados",
+                pesoInput: "70",
+                alturaInput: "1.75",
+                explanation: "O usuário informa seu peso como 70 kg e sua altura como 1.75 metros"
+              },
+              {
+                step: 3,
+                call: "Conversão de tipos",
+                peso: 70,
+                altura: 1.75,
+                explanation: "As strings de entrada são convertidas para números usando parseFloat()"
+              },
+              {
+                step: 4,
+                call: "Validação de entrada",
+                condicao: "70 > 0 && 1.75 > 0",
+                resultado: true,
+                explanation: "O peso e a altura são positivos e são números válidos, então passamos para o cálculo"
+              },
+              {
+                step: 5,
+                call: "Chamada da função calcularIMC",
+                calculo: "70 / (1.75 * 1.75)",
+                calculo_detalhado: "70 / 3.0625",
+                imc: 22.86,
+                explanation: "Calculamos o IMC: 70 dividido pelo quadrado de 1.75 (3.0625), resultando em 22.86"
+              },
+              {
+                step: 6,
+                call: "Determinação da classificação",
+                verificacoes: [
+                  "imc < 18.5? 22.86 < 18.5 = false",
+                  "imc < 25? 22.86 < 25 = true"
+                ],
+                classificacao: "Peso normal",
+                explanation: "O IMC 22.86 está entre 18.5 e 25, então a classificação é 'Peso normal'"
+              },
+              {
+                step: 7,
+                call: "Exibição do resultado",
+                saida: "Seu IMC é: 22.86 - Peso normal",
+                explanation: "Exibimos o IMC formatado com duas casas decimais e sua classificação"
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 ]; 
