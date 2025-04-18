@@ -3409,6 +3409,226 @@ for (let i = 10; i >= 0; i--) {
                 explanation: "Após 5 segundos, a mensagem final de lançamento é exibida, completando a contagem regressiva"
               }
             ]
+          },
+          {
+            id: "dia5-desafio2-v2",
+            title: "Contagem Regressiva com setInterval",
+            statement: `<h2>DESAFIO 02: Contagem regressiva para lançamento de foguete</h2>
+                        <p>Imagine que você é um engenheiro da NASA e está prestes a lançar um foguete. Você precisa fazer uma contagem regressiva a partir de 10 até o lançamento. No entanto, quando chegar nos últimos 3 segundos, é importante dar um aviso, então inclua o texto "Atenção!" junto à contagem. Quando a contagem terminar mostre a mensagem: "Lançamento do foguete!"</p>`,
+            code: `// === DESAFIO 02: Contagem regressiva com espera de meio segundo ===
+//
+// O objetivo é fazer uma contagem regressiva a partir de 10 até o lançamento,
+// aguardando 0,5 segundo entre cada número.
+// Quando chegar nos últimos 3 segundos, incluir "Atenção!" junto à contagem.
+// Ao chegar em 0, mostrar a mensagem "Lançamento do foguete!".
+
+console.log("=== DESAFIO 02: Contagem regressiva ===\\n");
+
+let count = 10;
+
+// Cria um intervalo que executa a cada 500 milissegundos (0,5 segundo)
+const intervalo = setInterval(function() {
+  if (count === 0) {
+    console.log("Lançamento do foguete!");
+    clearInterval(intervalo);
+  } else if (count <= 3) {
+    console.log(count + " ... Atenção!");
+  } else {
+    console.log(count);
+  }
+  count--;
+}, 500);`,
+            explanation: `<p>Este código implementa uma contagem regressiva de lançamento de foguete usando a função setInterval para controlar o tempo.</p>
+
+                        <div class="code-explanation">
+                          <h4>Análise detalhada linha por linha:</h4>
+                          
+                          <pre><code>// === DESAFIO 02: Contagem regressiva com espera de meio segundo ===</code></pre>
+                          <p>Comentário de título que identifica o desafio e seu propósito.</p>
+                          
+                          <pre><code>//
+// O objetivo é fazer uma contagem regressiva a partir de 10 até o lançamento,
+// aguardando 0,5 segundo entre cada número.
+// Quando chegar nos últimos 3 segundos, incluir "Atenção!" junto à contagem.
+// Ao chegar em 0, mostrar a mensagem "Lançamento do foguete!".</code></pre>
+                          <p>Comentários que descrevem o comportamento esperado do programa:</p>
+                          <ul>
+                            <li>Explica a contagem regressiva começando em 10</li>
+                            <li>Define o intervalo de tempo entre cada número (0,5 segundo)</li>
+                            <li>Especifica o comportamento especial para os últimos 3 segundos</li>
+                            <li>Indica a mensagem final ao terminar a contagem</li>
+                          </ul>
+                          
+                          <pre><code>console.log("=== DESAFIO 02: Contagem regressiva ===\\n");</code></pre>
+                          <p>Exibe o título do programa no console:</p>
+                          <ul>
+                            <li>Marca o início da execução do programa</li>
+                            <li>O <code>\\n</code> adiciona uma quebra de linha após o título</li>
+                          </ul>
+                          
+                          <pre><code>let count = 10;</code></pre>
+                          <p>Inicializa a variável de contagem:</p>
+                          <ul>
+                            <li>Declara e inicializa a variável <code>count</code> com o valor 10</li>
+                            <li>Esta variável será decrementada a cada intervalo até chegar a zero</li>
+                            <li>Diferente da versão anterior, aqui usamos uma variável externa ao invés de uma variável de iteração de loop</li>
+                          </ul>
+                          
+                          <pre><code>// Cria um intervalo que executa a cada 500 milissegundos (0,5 segundo)
+const intervalo = setInterval(function() {</code></pre>
+                          <p>Configura um temporizador com intervalo fixo:</p>
+                          <ul>
+                            <li>A função <code>setInterval()</code> executa um código repetidamente em intervalos de tempo iguais</li>
+                            <li>O primeiro argumento é uma função anônima (callback) que será executada a cada intervalo</li>
+                            <li>A variável <code>intervalo</code> armazena o ID do intervalo para poder cancelá-lo posteriormente</li>
+                            <li>Esta abordagem é diferente da versão anterior, que usava múltiplos <code>setTimeout</code></li>
+                          </ul>
+                          
+                          <pre><code>  if (count === 0) {
+    console.log("Lançamento do foguete!");
+    clearInterval(intervalo);
+  }</code></pre>
+                          <p>Primeira condição: verifica se chegou ao final da contagem:</p>
+                          <ul>
+                            <li>Quando <code>count</code> é igual a 0, a contagem terminou</li>
+                            <li>Exibe a mensagem especial "Lançamento do foguete!"</li>
+                            <li>O comando <code>clearInterval(intervalo)</code> cancela o intervalo, evitando que continue executando</li>
+                            <li>Este é um ponto crucial: sem cancelar o intervalo, a função continuaria sendo chamada indefinidamente</li>
+                          </ul>
+                          
+                          <pre><code>  else if (count <= 3) {
+    console.log(count + " ... Atenção!");
+  }</code></pre>
+                          <p>Segunda condição: verifica se está nos últimos 3 segundos:</p>
+                          <ul>
+                            <li>Quando <code>count</code> é menor ou igual a 3 (3, 2 ou 1)</li>
+                            <li>Exibe o número seguido do aviso "... Atenção!"</li>
+                            <li>Este alerta visual destaca os momentos críticos antes do lançamento</li>
+                          </ul>
+                          
+                          <pre><code>  else {
+    console.log(count);
+  }</code></pre>
+                          <p>Terceira condição (default): para os outros números:</p>
+                          <ul>
+                            <li>Para os valores iniciais da contagem (10 até 4)</li>
+                            <li>Exibe apenas o número, sem mensagens adicionais</li>
+                          </ul>
+                          
+                          <pre><code>  count--;</code></pre>
+                          <p>Decrementa o contador após cada exibição:</p>
+                          <ul>
+                            <li>Reduz o valor de <code>count</code> em 1 a cada vez que a função é executada</li>
+                            <li>Este decremento ocorre após a exibição do valor atual</li>
+                            <li>Na próxima execução da função de callback, <code>count</code> terá um valor menor</li>
+                          </ul>
+                          
+                          <pre><code>}, 500);</code></pre>
+                          <p>Define o intervalo de tempo entre as execuções:</p>
+                          <ul>
+                            <li>O segundo argumento da função <code>setInterval</code> especifica o tempo em milissegundos</li>
+                            <li>500ms equivale a meio segundo (0,5s)</li>
+                            <li>A função de callback será executada a cada meio segundo até ser cancelada</li>
+                          </ul>
+                        </div>
+
+                        <p>Esta implementação difere da primeira versão do desafio nos seguintes aspectos:</p>
+                        <ul>
+                            <li><strong>Método de temporização:</strong> Usa <code>setInterval</code> em vez de múltiplos <code>setTimeout</code></li>
+                            <li><strong>Variável de controle:</strong> Mantém uma variável externa que é modificada a cada execução</li>
+                            <li><strong>Finalização:</strong> Precisa explicitamente cancelar o intervalo com <code>clearInterval</code></li>
+                            <li><strong>Sincronização:</strong> Todas as exibições ocorrem em tempo preciso de 0,5 segundo entre si</li>
+                            <li><strong>Execução sequencial:</strong> Cada exibição só ocorre após a anterior ter sido processada</li>
+                        </ul>
+
+                        <p>As duas abordagens produzem o mesmo resultado visual, mas diferem na implementação técnica. Esta versão com <code>setInterval</code> é considerada mais apropriada para contagens regressivas, pois:</p>
+                        <ul>
+                            <li>É mais concisa e utiliza menos recursos do sistema</li>
+                            <li>Garante intervalos precisos entre as exibições</li>
+                            <li>É mais fácil de adaptar para contagens de duração variável</li>
+                            <li>Representa melhor o conceito de "pulsos" regulares de tempo</li>
+                        </ul>`,
+            trace: [
+              {
+                step: 1,
+                call: "Início do programa",
+                saida: "=== DESAFIO 02: Contagem regressiva ===\n",
+                explanation: "O programa inicia exibindo o título no console"
+              },
+              {
+                step: 2,
+                call: "Inicialização de variáveis",
+                variaveis: "count = 10",
+                explanation: "A variável count é inicializada com 10"
+              },
+              {
+                step: 3,
+                call: "Configuração de setInterval",
+                parametros: "função anônima, 500ms",
+                explanation: "Um intervalo é configurado para executar a função de callback a cada 0,5 segundo"
+              },
+              {
+                step: 4,
+                call: "Primeira execução - t=0ms",
+                count: 10,
+                saida: "10",
+                novoCount: 9,
+                explanation: "A função exibe 10 e decrementa o contador para 9"
+              },
+              {
+                step: 5,
+                call: "Segunda execução - t=500ms",
+                count: 9,
+                saida: "9",
+                novoCount: 8,
+                explanation: "A função exibe 9 e decrementa o contador para 8"
+              },
+              {
+                step: 6,
+                call: "Terceira execução - t=1000ms",
+                count: 8,
+                saida: "8",
+                novoCount: 7,
+                explanation: "A função exibe 8 e decrementa o contador para 7"
+              },
+              {
+                step: 7,
+                call: "Quarta a sétima execução",
+                explanation: "O processo continua para os valores 7, 6, 5 e 4, cada um exibido após mais 0,5 segundo"
+              },
+              {
+                step: 8,
+                call: "Oitava execução - t=3500ms",
+                count: 3,
+                saida: "3 ... Atenção!",
+                novoCount: 2,
+                explanation: "A função exibe '3 ... Atenção!' e decrementa o contador para 2"
+              },
+              {
+                step: 9,
+                call: "Nona execução - t=4000ms",
+                count: 2,
+                saida: "2 ... Atenção!",
+                novoCount: 1,
+                explanation: "A função exibe '2 ... Atenção!' e decrementa o contador para 1"
+              },
+              {
+                step: 10,
+                call: "Décima execução - t=4500ms",
+                count: 1,
+                saida: "1 ... Atenção!",
+                novoCount: 0,
+                explanation: "A função exibe '1 ... Atenção!' e decrementa o contador para 0"
+              },
+              {
+                step: 11,
+                call: "Última execução - t=5000ms",
+                count: 0,
+                saida: "Lançamento do foguete!",
+                acao: "clearInterval(intervalo)",
+                explanation: "A função exibe a mensagem final de lançamento e cancela o intervalo, encerrando a contagem regressiva"
+              }
+            ]
           }
         ]
       }
