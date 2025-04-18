@@ -1,0 +1,68 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Regra de Projeto: Portfolio de Algoritmos - Explicações de Código
+
+{
+  "name": "explanations-format",
+  "description": "Regras para formatação das explicações de algoritmos",
+  "rules": [
+    {
+      "id": "html-semantic",
+      "title": "Formatação HTML Semântica",
+      "description": "Todas as explicações devem utilizar HTML semântico com elementos apropriados",
+      "examples": [
+        "<div class=\"code-explanation\">",
+        "<h3>1. Entrada de dados</h3>",
+        "<pre><code>let valor = prompt(\"Digite um valor:\");</code></pre>",
+        "<p>Esta linha solicita ao usuário que digite um valor.</p>"
+      ]
+    },
+    {
+      "id": "line-by-line",
+      "title": "Explicação Linha por Linha",
+      "description": "A explicação deve detalhar o raciocínio e funcionamento do código linha por linha",
+      "examples": [
+        "<h3>2. Cálculo dos valores</h3>",
+        "<pre><code>let taxa = taxaPercent / 100;</code></pre>",
+        "<p>Converte a taxa de juros de percentual para decimal dividindo por 100 (ex.: 2% = 0.02).</p>"
+      ]
+    },
+    {
+      "id": "concepts-explanation",
+      "title": "Explicação de Conceitos",
+      "description": "Incluir explicações de conceitos, técnicas e padrões utilizados no algoritmo",
+      "examples": [
+        "<p>Este programa utiliza o princípio de juros compostos, onde os juros são calculados sobre o montante acumulado (principal + juros anteriores).</p>",
+        "<p>A \"Regra dos 72\" é uma fórmula aproximada para estimar quanto tempo leva para dobrar um investimento: anos ≈ 72 / taxa de juros (%).</p>"
+      ]
+    },
+    {
+      "id": "beginner-friendly",
+      "title": "Acessibilidade para Iniciantes",
+      "description": "O texto deve ser claro e compreensível para pessoas iniciantes em programação",
+      "examples": [
+        "<p>A função <code>parseFloat()</code> converte a string em um número decimal.</p>",
+        "<p>O loop <code>while</code> repete o código enquanto a condição especificada for verdadeira.</p>"
+      ]
+    },
+    {
+      "id": "structured-sections",
+      "title": "Seções Estruturadas",
+      "description": "A explicação deve ser dividida em seções lógicas que seguem o fluxo do algoritmo",
+      "examples": [
+        "<h3>1. Entrada de dados</h3>",
+        "<h3>2. Validação das entradas</h3>",
+        "<h3>3. Cálculo dos valores</h3>",
+        "<h3>4. Exibição dos resultados</h3>"
+      ]
+    }
+  ],
+  "validation": {
+    "required_elements": ["div.code-explanation", "h3", "pre code", "p"],
+    "min_sections": 3,
+    "explanation_coverage": "complete"
+  }
+}

@@ -3692,19 +3692,81 @@ if (isNaN(valorInicial) || valorInicial <= 0) {
   console.log("\\nSerão necessários " + anos + " anos para o investimento dobrar de valor.");
 }`,
             explanation: `<div class="code-explanation">
-            <p>Este programa calcula quanto tempo levará para um investimento inicial dobrar de valor, com base em uma taxa de juros anual específica.</p>
-                        <p>O algoritmo segue os seguintes passos:</p>
-                        <ol>
-                            <li>Solicita ao usuário o valor inicial do investimento e a taxa de juros anual.</li>
-                            <li>Converte as entradas de string para números e valida se são valores positivos.</li>
-                            <li>Calcula o valor-alvo (o dobro do valor inicial).</li>
-                            <li>Utiliza um loop <code>while</code> para simular o crescimento do investimento ano após ano.</li>
-                            <li>Dentro do loop, incrementa o contador de anos e aplica a taxa de juros ao valor atual.</li>
-                            <li>O loop continua até que o valor atual seja igual ou maior que o valor-alvo (o dobro do inicial).</li>
-                            <li>Por fim, exibe o número de anos necessários para o investimento dobrar.</li>
-                        </ol>
-                        <p>A matemática por trás deste cálculo é baseada em juros compostos, onde os juros de cada período são somados ao principal para o cálculo dos juros no período seguinte. A fórmula usada é: <code>ValorAtual = ValorInicial * (1 + taxa)^anos</code>.</p>
-                        <p>Este é um exemplo prático do uso de loops <code>while</code> para cálculos financeiros, onde não sabemos de antemão quantas iterações serão necessárias.</p>`,
+            <p>Este programa calcula quanto tempo (em anos) levará para que um investimento inicial dobre de valor, aplicando uma taxa de juros anual. Vamos analisar o código linha por linha:</p>
+
+<h3>1. Entrada de dados</h3>
+<pre><code>let valorInicialInput = prompt("Digite o valor inicial do investimento:");</code></pre>
+<p>Solicita ao usuário que digite o valor inicial do investimento e armazena a resposta como string na variável <code>valorInicialInput</code>.</p>
+
+<pre><code>let taxaJurosInput = prompt("Digite a taxa de juros anual (em %):");</code></pre>
+<p>Solicita ao usuário que digite a taxa de juros anual em porcentagem e armazena a resposta como string na variável <code>taxaJurosInput</code>.</p>
+
+<h3>2. Conversão das entradas</h3>
+<pre><code>let valorInicial = parseFloat(valorInicialInput);</code></pre>
+<p>Converte a string <code>valorInicialInput</code> em um número de ponto flutuante usando a função <code>parseFloat()</code>.</p>
+
+<pre><code>let taxaJuros = parseFloat(taxaJurosInput);</code></pre>
+<p>Converte a taxa de juros de string para número usando a função <code>parseFloat()</code>.</p>
+
+<h3>3. Validação das entradas</h3>
+<pre><code>if (isNaN(valorInicial) || valorInicial <= 0) {
+  console.log("Valor inicial inválido. Digite um número positivo.");
+} else if (isNaN(taxaJuros) || taxaJuros <= 0) {
+  console.log("Taxa de juros inválida. Digite um número positivo.");
+} else {</code></pre>
+<p>Verifica se as entradas são números válidos e positivos. A função <code>isNaN()</code> verifica se o valor não é um número. Se algum valor for inválido, exibe uma mensagem de erro correspondente.</p>
+
+<h3>4. Preparação dos dados</h3>
+<pre><code>  // Converte a taxa percentual para decimal
+  let taxa = taxaJuros / 100;</code></pre>
+<p>Converte a taxa de juros de percentual para decimal dividindo por 100 (ex.: 10% = 0.1).</p>
+
+<pre><code>  // Define o valor-alvo (dobro do valor inicial)
+  let valorAlvo = valorInicial * 2;</code></pre>
+<p>Calcula o valor-alvo, que é o dobro do valor inicial. Este é o valor que queremos atingir para determinar quanto tempo leva para o investimento dobrar.</p>
+
+<pre><code>  // Inicializa variáveis para o loop
+  let valorAtual = valorInicial;
+  let anos = 0;</code></pre>
+<p>Inicializa duas variáveis importantes: <code>valorAtual</code>, que começa igual ao valor inicial e será atualizado a cada iteração do loop, e <code>anos</code>, um contador que começará em 0 e será incrementado a cada iteração.</p>
+
+<h3>5. Exibição dos parâmetros iniciais</h3>
+<pre><code>  console.log("=== DESAFIO 03: Tempo de Duplicação do Investimento ===\\n");
+  console.log("Valor inicial: R$ " + valorInicial.toFixed(2));
+  console.log("Taxa de juros anual: " + taxaJuros.toFixed(2) + "%");
+  console.log("Valor alvo (dobro): R$ " + valorAlvo.toFixed(2));
+  console.log("\\nSimulação ano a ano:\\n");</code></pre>
+<p>Exibe os parâmetros da simulação: o valor inicial, a taxa de juros, o valor-alvo. O método <code>toFixed(2)</code> formata os valores com duas casas decimais.</p>
+
+<h3>6. Simulação do crescimento do investimento</h3>
+<pre><code>  // Loop while que executa até o valor atual atingir ou ultrapassar o valor-alvo
+  while (valorAtual < valorAlvo) {
+    anos++;
+    // Aplica os juros (valorAtual = valorAtual + valorAtual * taxa)
+    valorAtual *= (1 + taxa);
+    console.log("Ano " + anos + ": R$ " + valorAtual.toFixed(2));
+  }</code></pre>
+<p>Este é o coração do programa: um loop <code>while</code> que continuará executando enquanto o valor atual for menor que o valor-alvo (dobro do inicial). Em cada iteração:</p>
+<ul>
+    <li>Incrementa-se o contador de anos.</li>
+    <li>Aplica-se a taxa de juros ao valor atual usando a fórmula de juros compostos: novo valor = valor atual × (1 + taxa).</li>
+    <li>O operador <code>*=</code> é uma forma abreviada de escrever <code>valorAtual = valorAtual * (1 + taxa)</code>.</li>
+    <li>Exibe-se o ano atual e o valor atualizado após a aplicação dos juros.</li>
+</ul>
+<p>O loop continuará até que o <code>valorAtual</code> seja maior ou igual ao <code>valorAlvo</code>, momento em que o investimento terá pelo menos dobrado.</p>
+
+<h3>7. Exibição do resultado final</h3>
+<pre><code>  console.log("\\nSerão necessários " + anos + " anos para o investimento dobrar de valor.");</code></pre>
+<p>Após o término do loop, exibe-se a conclusão: quantos anos serão necessários para o investimento dobrar de valor com a taxa de juros fornecida.</p>
+
+<h3>Conceitos matemáticos aplicados</h3>
+<p>Este programa aplica o conceito de juros compostos, onde os juros são calculados sobre o montante acumulado (principal + juros anteriores). A fórmula utilizada é:</p>
+<p><code>ValorFinal = ValorInicial × (1 + taxa)^anos</code></p>
+<p>Onde <code>^</code> representa a operação de potenciação.</p>
+
+<p>Um conceito relacionado é a "Regra dos 72", uma regra prática que estima o tempo necessário para dobrar um investimento: <code>anos ≈ 72 / taxa de juros (%)</code>. Para uma taxa de 10%, por exemplo, a regra estima aproximadamente 7,2 anos, próximo do resultado exato calculado pelo programa.</p>
+
+<p>Este programa demonstra o poder dos juros compostos ao longo do tempo e como pequenas mudanças na taxa de juros podem afetar significativamente o tempo necessário para duplicar um investimento.</p>`,
             trace: [
               {
                 step: 1,

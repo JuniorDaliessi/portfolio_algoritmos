@@ -20,7 +20,7 @@ Os títulos devem ser descritivos e refletir o conteúdo do desafio
 Cada versão de desafio deve incluir os seguintes elementos:
 statement: Enunciado do desafio em formato HTML
 code: Implementação da solução em JavaScript/TypeScript
-explanation: Explicação detalhada da solução em formato HTML
+explanation: Explicação detalhada linha por linha da solução em formato HTML
 trace: Array de passos para o estudo de mesa do algoritmo
 Estilo de Formatação
 1. Enunciado (statement)
