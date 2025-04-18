@@ -4278,6 +4278,208 @@ if (isNaN(peso) || peso <= 0 || isNaN(altura) || altura <= 0) {
                 explanation: "Exibimos o IMC formatado com duas casas decimais e sua classificação"
               }
             ]
+          },
+                    {
+            id: "dia6-desafio1-v2",
+            title: "Calculadora de IMC Avançada com Tratamento de Erros",
+            statement: `<h2>DESAFIO 01: Calcular IMC</h2>
+                        <p>Crie uma função que utiliza o peso e a altura como parâmetros para calcular o IMC de uma pessoa. Só lembrando que o IMC é o peso dividido pela altura ao quadrado.</p>`,
+            code: `// === Função Avançada para Calcular IMC ===
+//
+// Esta função calcula o IMC (Índice de Massa Corporal) e retorna um objeto
+// contendo o valor do IMC e sua classificação de acordo com as faixas padrão.
+// Além disso, ela realiza validações para garantir que os valores de peso e altura sejam positivos.
+
+function calcularIMCAvancado(peso, altura) {
+  // Validação dos parâmetros
+  if (typeof peso !== 'number' || typeof altura !== 'number' || peso <= 0 || altura <= 0) {
+    throw new Error("Os valores de peso e altura devem ser números positivos.");
+  }
+  
+  // Cálculo do IMC
+  const imc = peso / (altura * altura);
+  
+  // Determina a classificação do IMC
+  let classificacao = "";
+  
+  if (imc < 18.5) {
+    classificacao = "Abaixo do peso";
+  } else if (imc >= 18.5 && imc < 25) {
+    classificacao = "Peso normal";
+  } else if (imc >= 25 && imc < 30) {
+    classificacao = "Sobrepeso";
+  } else {
+    classificacao = "Obesidade";
+  }
+  
+  // Retorna um objeto com os resultados
+  return { imc, classificacao };
+}
+
+// Exemplo de uso com inputs do usuário
+try {
+  const pesoInput = prompt("Digite seu peso (em kg):");
+  const alturaInput = prompt("Digite sua altura (em metros):");
+  
+  const peso = parseFloat(pesoInput);
+  const altura = parseFloat(alturaInput);
+  
+  const resultado = calcularIMCAvancado(peso, altura);
+  
+  console.log(\`Seu IMC é \${resultado.imc.toFixed(2)} - \${resultado.classificacao}\`);
+} catch (error) {
+  console.log("Erro: " + error.message);
+}`,
+            explanation: `<div class="code-explanation">
+<p>Este programa calcula o Índice de Massa Corporal (IMC) de uma pessoa e determina sua classificação usando técnicas mais avançadas de programação. Vamos analisar o código linha por linha:</p>
+
+<h3>1. Definição da função avançada de cálculo do IMC</h3>
+<pre><code>function calcularIMCAvancado(peso, altura) {</code></pre>
+<p>Define uma função chamada <code>calcularIMCAvancado</code> que recebe dois parâmetros: <code>peso</code> e <code>altura</code>.</p>
+
+<h3>2. Validação robusta dos parâmetros</h3>
+<pre><code>  if (typeof peso !== 'number' || typeof altura !== 'number' || peso <= 0 || altura <= 0) {
+    throw new Error("Os valores de peso e altura devem ser números positivos.");
+  }</code></pre>
+<p>Implementa uma validação de dados mais robusta que:</p>
+<ul>
+    <li>Verifica se os parâmetros são do tipo número usando o operador <code>typeof</code></li>
+    <li>Confirma que os valores são positivos</li>
+    <li>Em vez de apenas retornar, <code>throw</code> lança um erro com uma mensagem descritiva se qualquer condição falhar</li>
+</ul>
+<p>Este é um exemplo de tratamento de erros defensivo que impede o processamento com dados inválidos.</p>
+
+<h3>3. Cálculo do IMC</h3>
+<pre><code>  // Cálculo do IMC
+  const imc = peso / (altura * altura);</code></pre>
+<p>Calcula o IMC usando a fórmula padrão: peso dividido pelo quadrado da altura. A variável é declarada com <code>const</code>, indicando que seu valor não será alterado após a atribuição inicial.</p>
+
+<h3>4. Determinação da classificação do IMC</h3>
+<pre><code>  // Determina a classificação do IMC
+  let classificacao = "";
+  
+  if (imc < 18.5) {
+    classificacao = "Abaixo do peso";
+  } else if (imc >= 18.5 && imc < 25) {
+    classificacao = "Peso normal";
+  } else if (imc >= 25 && imc < 30) {
+    classificacao = "Sobrepeso";
+  } else {
+    classificacao = "Obesidade";
+  }</code></pre>
+<p>Determina a classificação do IMC com base nas faixas padrão. Observe que esta versão é mais explícita nas condições, incluindo os limites inferiores em cada verificação (por exemplo, <code>imc >= 18.5</code>), o que torna o código mais legível e preciso, mesmo que matematicamente redundante.</p>
+
+<h3>5. Retorno de um objeto com resultados</h3>
+<pre><code>  // Retorna um objeto com os resultados
+  return { imc, classificacao };</code></pre>
+<p>Ao invés de apenas mostrar o resultado, esta função retorna um objeto contendo tanto o valor do IMC quanto sua classificação. Este é um exemplo de programação orientada a objetos, permitindo que o chamador da função tenha acesso a todos os dados calculados. Usa a sintaxe abreviada do ES6 para criar o objeto (equivalente a <code>{ imc: imc, classificacao: classificacao }</code>).</p>
+
+<h3>6. Utilização do bloco try/catch para tratamento de erros</h3>
+<pre><code>// Exemplo de uso com inputs do usuário
+try {</code></pre>
+<p>Inicia um bloco <code>try</code> que permite capturar e tratar exceções (erros) que podem ocorrer durante a execução do código interno.</p>
+
+<h3>7. Entrada e conversão de dados</h3>
+<pre><code>  const pesoInput = prompt("Digite seu peso (em kg):");
+  const alturaInput = prompt("Digite sua altura (em metros):");
+  
+  const peso = parseFloat(pesoInput);
+  const altura = parseFloat(alturaInput);</code></pre>
+<p>Solicita ao usuário que insira seu peso e altura, e converte as entradas de string para números. Este código usa <code>const</code> para as variáveis, que é uma prática moderna de JavaScript para declarar variáveis que não serão reatribuídas.</p>
+
+<h3>8. Chamada da função e uso do resultado</h3>
+<pre><code>  const resultado = calcularIMCAvancado(peso, altura);
+  
+  console.log(\`Seu IMC é \${resultado.imc.toFixed(2)} - \${resultado.classificacao}\`);</code></pre>
+<p>Chama a função <code>calcularIMCAvancado</code> e armazena o objeto de resultado. Depois, utiliza template strings do ES6 (caracterizados pelos crases e expressões <code>\${...}</code>) para formatar a saída, acessando as propriedades do objeto retornado.</p>
+
+<h3>9. Captura e tratamento de erros</h3>
+<pre><code>} catch (error) {
+  console.log("Erro: " + error.message);
+}</code></pre>
+<p>Captura qualquer erro que ocorra dentro do bloco <code>try</code> e exibe uma mensagem amigável para o usuário. Isso é importante para tratamento de erros em produção, pois evita que o programa trave completamente quando algo inesperado acontece.</p>
+
+<h3>Conceitos avançados aplicados</h3>
+<p>Este programa demonstra vários conceitos avançados de programação:</p>
+<ul>
+    <li><strong>Programação defensiva</strong>: Valida rigorosamente as entradas para prevenir comportamentos inesperados.</li>
+    <li><strong>Tratamento de exceções</strong>: Usa blocos try/catch para lidar com erros de forma elegante.</li>
+    <li><strong>Retorno de objetos</strong>: Empacota múltiplos valores de retorno em um objeto estruturado.</li>
+    <li><strong>ES6 features</strong>: Utiliza recursos modernos de JavaScript como template strings, declarações const/let e shorthand object properties.</li>
+    <li><strong>Encapsulamento</strong>: Isola a lógica de cálculo do IMC em uma função reutilizável que esconde sua complexidade interna.</li>
+</ul>
+
+<p>Comparado à primeira versão, este código representa uma evolução em termos de robustez, legibilidade e adoção de práticas modernas de programação, tornando-o mais adequado para uso em ambientes de produção onde a confiabilidade é crucial.</p>
+</div>`,
+            trace: [
+              {
+                step: 1,
+                call: "Definição da função",
+                explanation: "A função calcularIMCAvancado é definida para receber peso e altura, realizar validações, calcular o IMC e retornar um objeto com o resultado e classificação"
+              },
+              {
+                step: 2,
+                call: "Bloco try - Entrada de dados",
+                pesoInput: "70",
+                alturaInput: "1.75",
+                explanation: "O usuário informa seu peso como 70 kg e sua altura como 1.75 metros dentro do bloco try que capturará qualquer erro"
+              },
+              {
+                step: 3,
+                call: "Conversão de tipos",
+                peso: 70,
+                altura: 1.75,
+                explanation: "As strings de entrada são convertidas para números usando parseFloat()"
+              },
+              {
+                step: 4,
+                call: "Chamada da função calcularIMCAvancado",
+                params: { peso: 70, altura: 1.75 },
+                explanation: "A função é chamada com os valores de peso e altura"
+              },
+              {
+                step: 5,
+                call: "Validação dos parâmetros",
+                verificacoes: [
+                  "typeof 70 === 'number'? true",
+                  "typeof 1.75 === 'number'? true",
+                  "70 > 0? true",
+                  "1.75 > 0? true"
+                ],
+                resultado: "Validação bem-sucedida",
+                explanation: "Todos os parâmetros passam na validação por serem números positivos"
+              },
+              {
+                step: 6,
+                call: "Cálculo do IMC",
+                calculo: "70 / (1.75 * 1.75)",
+                calculo_detalhado: "70 / 3.0625",
+                imc: 22.86,
+                explanation: "O IMC é calculado: 70 dividido pelo quadrado de 1.75 (3.0625), resultando em 22.86"
+              },
+              {
+                step: 7,
+                call: "Determinação da classificação",
+                verificacoes: [
+                  "imc < 18.5? 22.86 < 18.5 = false",
+                  "imc >= 18.5 && imc < 25? 22.86 >= 18.5 && 22.86 < 25 = true"
+                ],
+                classificacao: "Peso normal",
+                explanation: "O IMC 22.86 está entre 18.5 e 25, então a classificação é 'Peso normal'"
+              },
+              {
+                step: 8,
+                call: "Retorno do objeto resultado",
+                resultado: { imc: 22.86, classificacao: "Peso normal" },
+                explanation: "A função retorna um objeto contendo o valor do IMC e sua classificação"
+              },
+              {
+                step: 9,
+                call: "Exibição do resultado",
+                saida: "Seu IMC é 22.86 - Peso normal",
+                explanation: "O resultado é exibido formatado usando template strings e acessando as propriedades do objeto retornado"
+              }
+            ]
           }
         ]
       }
