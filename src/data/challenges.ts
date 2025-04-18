@@ -3647,270 +3647,334 @@ const intervalo = setInterval(function() {</code></pre>
                           <li>Uma taxa de juros anual (em percentual)</li>
                         </ul>
                         <p>O programa deve validar as entradas e calcular quanto tempo levará para o investimento dobrar de valor.</p>`,
-            code: `// === DESAFIO 03: Cálculo de Juros com Loop While e Inputs (Mostrando rendimento de cada ano) ===
+            code: `// === DESAFIO 03: Tempo de Duplicação do Investimento ===
 //
-// Este programa solicita ao usuário que informe:
-// 1) O investimento inicial (em reais)
-// 2) A taxa de juros anual (em %)
-// Em seguida, calcula quantos anos serão necessários para que o investimento dobre de valor,
-// mostrando o valor acumulado e o rendimento de cada ano.
+// Solicita ao usuário um valor inicial para investimento e uma taxa de juros anual.
+// Verifica quanto tempo levará para o valor inicial dobrar.
+// Utiliza um loop while para calcular o crescimento ano a ano.
 
-let investimentoInput = prompt("Digite o investimento inicial (em reais):");
-let taxaInput = prompt("Digite a taxa de juros anual (em %):");
+let valorInicialInput = prompt("Digite o valor inicial do investimento:");
+let taxaJurosInput = prompt("Digite a taxa de juros anual (em %):");
 
-let investimentoInicial = parseFloat(investimentoInput);
-let taxaPercent = parseFloat(taxaInput);
+let valorInicial = parseFloat(valorInicialInput);
+let taxaJuros = parseFloat(taxaJurosInput);
 
-if (isNaN(investimentoInicial) || investimentoInicial <= 0) {
-  console.log("Investimento inicial inválido.");
-} else if (isNaN(taxaPercent) || taxaPercent <= 0) {
-  console.log("Taxa de juros inválida.");
+// Validação das entradas
+if (isNaN(valorInicial) || valorInicial <= 0) {
+  console.log("Valor inicial inválido. Digite um número positivo.");
+} else if (isNaN(taxaJuros) || taxaJuros <= 0) {
+  console.log("Taxa de juros inválida. Digite um número positivo.");
 } else {
-  // Converte a taxa percentual para decimal (ex: 5% => 0.05)
-  let taxa = taxaPercent / 100;
-  let valorAtual = investimentoInicial;
-  let meta = investimentoInicial * 2;
+  // Converte a taxa percentual para decimal
+  let taxa = taxaJuros / 100;
+  
+  // Define o valor-alvo (dobro do valor inicial)
+  let valorAlvo = valorInicial * 2;
+  
+  // Inicializa variáveis para o loop
+  let valorAtual = valorInicial;
   let anos = 0;
-
-  console.log("=== DESAFIO 03: Cálculo de Juros ===\\n");
-  console.log("Investimento inicial: R$ " + investimentoInicial.toFixed(2));
-  console.log("Taxa de juros anual: " + taxaPercent.toFixed(2) + "%");
-  console.log("Meta (dobro do investimento): R$ " + meta.toFixed(2));
-  console.log("");
-
-  // Calcula e exibe o rendimento de cada ano até atingir o dobro do investimento
-  while (valorAtual < meta) {
-    let valorAnterior = valorAtual;
-    valorAtual *= (1 + taxa);
+  
+  console.log("=== DESAFIO 03: Tempo de Duplicação do Investimento ===\\n");
+  console.log("Valor inicial: R$ " + valorInicial.toFixed(2));
+  console.log("Taxa de juros anual: " + taxaJuros.toFixed(2) + "%");
+  console.log("Valor alvo (dobro): R$ " + valorAlvo.toFixed(2));
+  console.log("\\nSimulação ano a ano:\\n");
+  
+  // Loop while que executa até o valor atual atingir ou ultrapassar o valor-alvo
+  while (valorAtual < valorAlvo) {
     anos++;
-    let rendimento = valorAtual - valorAnterior;
-    console.log("Ano " + anos + ": Valor acumulado: R$ " + valorAtual.toFixed(2) + " (Rendimento do ano: R$ " + rendimento.toFixed(2) + ")");
+    // Aplica os juros (valorAtual = valorAtual + valorAtual * taxa)
+    valorAtual *= (1 + taxa);
+    console.log("Ano " + anos + ": R$ " + valorAtual.toFixed(2));
   }
   
-  console.log("\\nO investimento dobrou após " + anos + " ano(s).");
+  console.log("\\nSerão necessários " + anos + " anos para o investimento dobrar de valor.");
 }`,
-            explanation: `<p>Este código implementa um simulador financeiro que calcula quanto tempo um investimento levará para dobrar de valor com base em juros compostos.</p>
-
-                        <div class="code-explanation">
-                          <h4>Análise detalhada linha por linha:</h4>
-                          
-                          <pre><code>// === DESAFIO 03: Cálculo de Juros com Loop While e Inputs (Mostrando rendimento de cada ano) ===</code></pre>
-                          <p>Comentário de título que descreve o propósito do programa.</p>
-                          
-                          <pre><code>//
-// Este programa solicita ao usuário que informe:
-// 1) O investimento inicial (em reais)
-// 2) A taxa de juros anual (em %)
-// Em seguida, calcula quantos anos serão necessários para que o investimento dobre de valor,
-// mostrando o valor acumulado e o rendimento de cada ano.</code></pre>
-                          <p>Comentários explicativos que detalham:</p>
-                          <ul>
-                            <li>As informações que serão solicitadas ao usuário</li>
-                            <li>O objetivo do programa (calcular o tempo para dobrar o investimento)</li>
-                            <li>As informações que serão exibidas durante a execução</li>
-                          </ul>
-                          
-                          <pre><code>let investimentoInput = prompt("Digite o investimento inicial (em reais):");</code></pre>
-                          <p>Solicita o valor do investimento inicial ao usuário:</p>
-                          <ul>
-                            <li>A função <code>prompt()</code> exibe uma caixa de diálogo com a mensagem especificada</li>
-                            <li>O texto inserido pelo usuário é armazenado na variável <code>investimentoInput</code> como uma string</li>
-                            <li>Esta é a primeira entrada que o programa necessita para realizar os cálculos</li>
-                          </ul>
-                          
-                          <pre><code>let taxaInput = prompt("Digite a taxa de juros anual (em %):");</code></pre>
-                          <p>Solicita a taxa de juros anual ao usuário:</p>
-                          <ul>
-                            <li>Similar à entrada anterior, a função <code>prompt()</code> é usada para obter a informação</li>
-                            <li>O valor inserido é armazenado na variável <code>taxaInput</code> como uma string</li>
-                            <li>Esta é a segunda entrada necessária para os cálculos de juros compostos</li>
-                          </ul>
-                          
-                          <pre><code>let investimentoInicial = parseFloat(investimentoInput);
-let taxaPercent = parseFloat(taxaInput);</code></pre>
-                          <p>Converte as entradas de texto para números decimais:</p>
-                          <ul>
-                            <li>A função <code>parseFloat()</code> converte uma string em um número de ponto flutuante (decimal)</li>
-                            <li><code>investimentoInicial</code> armazena o valor numérico do investimento</li>
-                            <li><code>taxaPercent</code> armazena o valor numérico da taxa de juros anual em percentual</li>
-                            <li>A conversão é necessária porque o <code>prompt()</code> sempre retorna strings, mesmo para valores numéricos</li>
-                          </ul>
-                          
-                          <pre><code>if (isNaN(investimentoInicial) || investimentoInicial <= 0) {
-  console.log("Investimento inicial inválido.");
-}</code></pre>
-                          <p>Primeira validação: verifica se o investimento inicial é válido:</p>
-                          <ul>
-                            <li><code>isNaN()</code> retorna verdadeiro se o valor não for um número válido</li>
-                            <li>A condição também verifica se o valor é menor ou igual a zero</li>
-                            <li>Se alguma das condições for verdadeira, o programa exibe uma mensagem de erro</li>
-                            <li>Esta validação é importante para evitar cálculos com valores inválidos</li>
-                          </ul>
-                          
-                          <pre><code>else if (isNaN(taxaPercent) || taxaPercent <= 0) {
-  console.log("Taxa de juros inválida.");
-}</code></pre>
-                          <p>Segunda validação: verifica se a taxa de juros é válida:</p>
-                          <ul>
-                            <li>Similar à validação anterior, verifica se a taxa é um número e se é positiva</li>
-                            <li>Taxas de juros negativas ou zero não fazem sentido no contexto deste cálculo</li>
-                            <li>Se o valor for inválido, o programa exibe uma mensagem de erro específica</li>
-                          </ul>
-                          
-                          <pre><code>else {
-  // Código principal dentro deste bloco
-}</code></pre>
-                          <p>Estrutura condicional para o fluxo principal do programa:</p>
-                          <ul>
-                            <li>O código principal só é executado se ambas as entradas forem válidas</li>
-                            <li>Essa organização garante que o programa não tente calcular usando dados inválidos</li>
-                            <li>Todo o restante da lógica está contido neste bloco <code>else</code></li>
-                          </ul>
-                          
-                          <pre><code>  // Converte a taxa percentual para decimal (ex: 5% => 0.05)
-  let taxa = taxaPercent / 100;</code></pre>
-                          <p>Conversão da taxa percentual para decimal:</p>
-                          <ul>
-                            <li>A taxa informada pelo usuário está em percentual (ex: 5 para 5%)</li>
-                            <li>Para cálculos financeiros, precisamos converter para decimal dividindo por 100</li>
-                            <li>Exemplo: 5% se torna 0.05, 10% se torna 0.10</li>
-                            <li>Esta conversão é necessária para aplicar corretamente a fórmula de juros compostos</li>
-                          </ul>
-                          
-                          <pre><code>  let valorAtual = investimentoInicial;
-  let meta = investimentoInicial * 2;
-  let anos = 0;</code></pre>
-                          <p>Inicialização das variáveis de controle:</p>
-                          <ul>
-                            <li><code>valorAtual</code>: começa com o valor do investimento inicial</li>
-                            <li><code>meta</code>: define o objetivo, que é o dobro do investimento inicial</li>
-                            <li><code>anos</code>: contador que será incrementado para rastrear o tempo necessário</li>
-                            <li>Estas variáveis serão atualizadas dentro do loop while</li>
-                          </ul>
-                          
-                          <pre><code>  console.log("=== DESAFIO 03: Cálculo de Juros ===\\n");
-  console.log("Investimento inicial: R$ " + investimentoInicial.toFixed(2));
-  console.log("Taxa de juros anual: " + taxaPercent.toFixed(2) + "%");
-  console.log("Meta (dobro do investimento): R$ " + meta.toFixed(2));
-  console.log("");</code></pre>
-                          <p>Exibição dos parâmetros iniciais:</p>
-                          <ul>
-                            <li>O método <code>toFixed(2)</code> formata os números com duas casas decimais</li>
-                            <li>O programa exibe o título, o valor inicial, a taxa de juros e a meta a atingir</li>
-                            <li>Este bloco de código fornece um relatório claro dos parâmetros do cálculo</li>
-                            <li>A linha em branco (<code>console.log("")</code>) adiciona espaçamento para melhor legibilidade</li>
-                          </ul>
-                          
-                          <pre><code  // Calcula e exibe o rendimento de cada ano até atingir o dobro do investimento
-  while (valorAtual < meta) {
-    // Código dentro do loop
-  }</code></pre>
-                          
-                          <pre><code    let valorAnterior = valorAtual;
-    valorAtual *= (1 + taxa);
-    anos++;</code></pre>
-                          
-                          <pre><code    let rendimento = valorAtual - valorAnterior;
-    console.log("Ano " + anos + ": Valor acumulado: R$ " + valorAtual.toFixed(2) + " (Rendimento do ano: R$ " + rendimento.toFixed(2) + ")");</code></pre>
-                          
-                          <pre><code  console.log("\\nO investimento dobrou após " + anos + " ano(s).");</code></pre>
-                        </div>
-
-                        <h4>Conceitos financeiros aplicados</h4>
-                        <p>Este programa demonstra alguns conceitos financeiros importantes:</p>
-                        <ul>
-                          <li><strong>Juros compostos:</strong> O cálculo onde os juros de cada período são adicionados ao principal e também rendem juros nos períodos seguintes.</li>
-                          <li><strong>Regra do 72:</strong> Uma aproximação que diz que dividindo 72 pela taxa de juros anual (em %), obtém-se aproximadamente o número de anos para dobrar o investimento.</li>
-                          <li><strong>Rentabilidade:</strong> O rendimento de cada período é calculado como a diferença entre o valor final e o valor inicial daquele período.</li>
-                          <li><strong>Tempo de duplicação:</strong> O tempo necessário para que um investimento dobre de valor, que depende diretamente da taxa de juros aplicada.</li>
-                        </ul>
-
-                        <h4>Estruturas de programação utilizadas</h4>
-                        <ul>
-                          <li><strong>Estrutura condicional (if/else):</strong> Para validação de entradas e controle de fluxo do programa.</li>
-                          <li><strong>Loop while:</strong> Para repetir o cálculo até atingir o objetivo (dobrar o investimento).</li>
-                          <li><strong>Variáveis de controle:</strong> Para manter o registro do estado do cálculo ao longo do tempo.</li>
-                          <li><strong>Formatação de saída:</strong> Para apresentar os valores monetários de forma legível.</li>
-                        </ul>`,
+            explanation: `<p>Este programa calcula quanto tempo levará para um investimento inicial dobrar de valor, com base em uma taxa de juros anual específica.</p>
+                        <p>O algoritmo segue os seguintes passos:</p>
+                        <ol>
+                            <li>Solicita ao usuário o valor inicial do investimento e a taxa de juros anual.</li>
+                            <li>Converte as entradas de string para números e valida se são valores positivos.</li>
+                            <li>Calcula o valor-alvo (o dobro do valor inicial).</li>
+                            <li>Utiliza um loop <code>while</code> para simular o crescimento do investimento ano após ano.</li>
+                            <li>Dentro do loop, incrementa o contador de anos e aplica a taxa de juros ao valor atual.</li>
+                            <li>O loop continua até que o valor atual seja igual ou maior que o valor-alvo (o dobro do inicial).</li>
+                            <li>Por fim, exibe o número de anos necessários para o investimento dobrar.</li>
+                        </ol>
+                        <p>A matemática por trás deste cálculo é baseada em juros compostos, onde os juros de cada período são somados ao principal para o cálculo dos juros no período seguinte. A fórmula usada é: <code>ValorAtual = ValorInicial * (1 + taxa)^anos</code>.</p>
+                        <p>Este é um exemplo prático do uso de loops <code>while</code> para cálculos financeiros, onde não sabemos de antemão quantas iterações serão necessárias.</p>`,
             trace: [
               {
                 step: 1,
-                call: "Solicitação de dados",
-                entrada: { investimentoInput: "1000", taxaInput: "5" },
-                explanation: "O programa solicita o valor inicial e a taxa de juros, recebendo R$ 1000,00 e 5% como entradas"
+                call: "Entrada de dados",
+                valorInicialInput: "1000",
+                taxaJurosInput: "10",
+                explanation: "O usuário informa o valor inicial de R$ 1000 e uma taxa de juros de 10% ao ano"
               },
               {
                 step: 2,
-                call: "Conversão de dados",
-                variaveis: {
-                  investimentoInicial: 1000,
-                  taxaPercent: 5,
-                  taxa: 0.05,
-                  valorAtual: 1000,
-                  meta: 2000,
-                  anos: 0
-                },
-                explanation: "As entradas são convertidas para números e a taxa é transformada de percentual para decimal"
+                call: "Conversão e validação",
+                valorInicial: 1000,
+                taxaJuros: 10,
+                taxa: 0.1,
+                valorAlvo: 2000,
+                explanation: "Os valores de entrada são convertidos para número e validados. A taxa percentual é convertida para decimal (10% = 0.1) e calculamos o valor-alvo (dobro do inicial)"
               },
               {
                 step: 3,
-                call: "Exibição dos parâmetros",
-                saida: [
-                  "=== DESAFIO 03: Cálculo de Juros ===",
-                  "",
-                  "Investimento inicial: R$ 1000.00",
-                  "Taxa de juros anual: 5.00%",
-                  "Meta (dobro do investimento): R$ 2000.00",
-                  ""
-                ],
-                explanation: "O programa exibe as informações iniciais formatadas"
+                call: "Inicialização",
+                valorAtual: 1000,
+                anos: 0,
+                saida: "=== DESAFIO 03: Tempo de Duplicação do Investimento ===\n\nValor inicial: R$ 1000.00\nTaxa de juros anual: 10.00%\nValor alvo (dobro): R$ 2000.00\n\nSimulação ano a ano:\n",
+                explanation: "Inicializamos as variáveis e exibimos os parâmetros da simulação"
               },
               {
                 step: 4,
-                call: "Primeira iteração do loop while",
-                variaveis: {
-                  valorAnterior: 1000,
-                  valorAtual: 1050,
-                  anos: 1,
-                  rendimento: 50
-                },
-                saida: "Ano 1: Valor acumulado: R$ 1050.00 (Rendimento do ano: R$ 50.00)",
-                explanation: "Após 1 ano, o valor cresce para R$ 1050,00 com rendimento de R$ 50,00"
+                call: "Loop while - primeira iteração",
+                anos: 1,
+                calculo: "1000 * (1 + 0.1) = 1100",
+                valorAtual: 1100,
+                saida: "Ano 1: R$ 1100.00",
+                explanation: "Incrementamos o contador de anos para 1 e aplicamos a taxa de juros ao valor atual: 1000 * 1.1 = 1100"
               },
               {
                 step: 5,
-                call: "Segunda iteração do loop while",
-                variaveis: {
-                  valorAnterior: 1050,
-                  valorAtual: 1102.5,
-                  anos: 2,
-                  rendimento: 52.5
-                },
-                saida: "Ano 2: Valor acumulado: R$ 1102.50 (Rendimento do ano: R$ 52.50)",
-                explanation: "Após 2 anos, o valor cresce para R$ 1102,50 com rendimento de R$ 52,50"
+                call: "Loop while - segunda iteração",
+                anos: 2,
+                calculo: "1100 * (1 + 0.1) = 1210",
+                valorAtual: 1210,
+                saida: "Ano 2: R$ 1210.00",
+                explanation: "Incrementamos o contador de anos para 2 e aplicamos a taxa de juros ao valor atual: 1100 * 1.1 = 1210"
               },
               {
                 step: 6,
-                call: "Iterações subsequentes",
-                explanation: "O processo continua nos anos seguintes, com o valor e o rendimento aumentando a cada ano"
+                call: "Loop while - terceira iteração",
+                anos: 3,
+                calculo: "1210 * (1 + 0.1) = 1331",
+                valorAtual: 1331,
+                saida: "Ano 3: R$ 1331.00",
+                explanation: "Incrementamos o contador de anos para 3 e aplicamos a taxa de juros ao valor atual: 1210 * 1.1 = 1331"
               },
               {
                 step: 7,
-                call: "Última iteração completa",
-                variaveis: {
-                  valorAnterior: 1950.78,
-                  valorAtual: 2048.32,
-                  anos: 15,
-                  rendimento: 97.54
-                },
-                saida: "Ano 15: Valor acumulado: R$ 2048.32 (Rendimento do ano: R$ 97.54)",
-                explanation: "No 15º ano, o valor finalmente ultrapassa R$ 2000,00, atingindo a meta"
+                call: "Loop while - quarta iteração",
+                anos: 4,
+                calculo: "1331 * (1 + 0.1) = 1464.1",
+                valorAtual: 1464.1,
+                saida: "Ano 4: R$ 1464.10",
+                explanation: "Incrementamos o contador de anos para 4 e aplicamos a taxa de juros ao valor atual: 1331 * 1.1 = 1464.10"
               },
               {
                 step: 8,
-                call: "Exibição do resultado final",
-                saida: "O investimento dobrou após 15 ano(s).",
-                explanation: "O programa informa que foram necessários 15 anos para dobrar o investimento com uma taxa de 5% ao ano"
+                call: "Loop while - quinta iteração",
+                anos: 5,
+                calculo: "1464.1 * (1 + 0.1) = 1610.51",
+                valorAtual: 1610.51,
+                saida: "Ano 5: R$ 1610.51",
+                explanation: "Incrementamos o contador de anos para 5 e aplicamos a taxa de juros ao valor atual: 1464.10 * 1.1 = 1610.51"
+              },
+              {
+                step: 9,
+                call: "Loop while - sexta iteração",
+                anos: 6,
+                calculo: "1610.51 * (1 + 0.1) = 1771.56",
+                valorAtual: 1771.56,
+                saida: "Ano 6: R$ 1771.56",
+                explanation: "Incrementamos o contador de anos para 6 e aplicamos a taxa de juros ao valor atual: 1610.51 * 1.1 = 1771.56"
+              },
+              {
+                step: 10,
+                call: "Loop while - sétima iteração",
+                anos: 7,
+                calculo: "1771.56 * (1 + 0.1) = 1948.72",
+                valorAtual: 1948.72,
+                saida: "Ano 7: R$ 1948.72",
+                explanation: "Incrementamos o contador de anos para 7 e aplicamos a taxa de juros ao valor atual: 1771.56 * 1.1 = 1948.72"
+              },
+              {
+                step: 11,
+                call: "Loop while - oitava iteração",
+                anos: 8,
+                calculo: "1948.72 * (1 + 0.1) = 2143.59",
+                valorAtual: 2143.59,
+                saida: "Ano 8: R$ 2143.59",
+                explanation: "Incrementamos o contador de anos para 8 e aplicamos a taxa de juros ao valor atual: 1948.72 * 1.1 = 2143.59"
+              },
+              {
+                step: 12,
+                call: "Condição de saída",
+                valorAtual: 2143.59,
+                valorAlvo: 2000,
+                condicao: "2143.59 > 2000",
+                explanation: "A condição do loop 'valorAtual < valorAlvo' não é mais satisfeita, pois 2143.59 > 2000, então saímos do loop"
+              },
+              {
+                step: 13,
+                call: "Resultado final",
+                anos: 8,
+                saida: "\nSerão necessários 8 anos para o investimento dobrar de valor.",
+                explanation: "Exibimos o resultado final: serão necessários 8 anos para o investimento dobrar de valor com uma taxa de juros de 10% ao ano"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: "dia5-desafio4",
+        title: "Compra Parcelada",
+        versions: [
+          {
+            id: "dia5-desafio4-v1",
+            title: "Simulador de Compra Parcelada com Juros",
+            statement: `<h2>DESAFIO 04: Compra parcelada</h2>
+                        <p>Suponha que você comprou um produto e optou por parcelar o valor em 12 vezes sem juros. Escreva um código que imprima o valor de cada parcela e o valor restante a ser pago.</p>`,
+            code: `// === DESAFIO 04: Compra Parcelada com Juros ===
+//
+// O programa solicita ao usuário:
+// 1) Valor total da compra
+// 2) Taxa de juros por parcela (em %)
+// 3) Quantidade de parcelas
+//
+// Em seguida, ele calcula o valor final da compra com juros compostos, determina
+// o valor de cada parcela (parcelamento fixo) e exibe, para cada parcela, o saldo
+// devedor restante após o pagamento.
+
+let valorCompraInput = prompt("Digite o valor total da compra:");
+let taxaInput = prompt("Digite a taxa de juros por parcela (em %):");
+let parcelasInput = prompt("Digite a quantidade de parcelas:");
+
+let valorCompra = parseFloat(valorCompraInput);
+let taxaPercent = parseFloat(taxaInput);
+let numParcelas = parseInt(parcelasInput);
+
+// Validação das entradas
+if (isNaN(valorCompra) || valorCompra <= 0) {
+  console.log("Valor da compra inválido.");
+} else if (isNaN(taxaPercent) || taxaPercent < 0) {
+  console.log("Taxa de juros inválida.");
+} else if (isNaN(numParcelas) || numParcelas <= 0) {
+  console.log("Quantidade de parcelas inválida.");
+} else {
+  // Converte a taxa percentual para decimal
+  let taxa = taxaPercent / 100;
+  
+  // Calcula o valor final com juros compostos:
+  // Fórmula: ValorFinal = valorCompra * (1 + taxa)^(numParcelas)
+  let valorFinal = valorCompra * Math.pow(1 + taxa, numParcelas);
+  
+  // Calcula o valor fixo de cada parcela
+  let valorParcela = valorFinal / numParcelas;
+  
+  console.log("=== DESAFIO 04: Compra Parcelada com Juros ===\\n");
+  console.log("Valor total da compra: R$ " + valorCompra.toFixed(2));
+  console.log("Taxa de juros por parcela: " + taxaPercent.toFixed(2) + "%");
+  console.log("Quantidade de parcelas: " + numParcelas);
+  console.log("Valor total com juros: R$ " + valorFinal.toFixed(2));
+  console.log("Valor de cada parcela: R$ " + valorParcela.toFixed(2));
+  console.log("");
+  
+  // Exibe o saldo devedor após o pagamento de cada parcela
+  for (let i = 1; i <= numParcelas; i++) {
+    let saldoRestante = valorFinal - (valorParcela * i);
+    console.log("Parcela " + i + ": R$ " + valorParcela.toFixed(2) + " | Saldo restante: R$ " + saldoRestante.toFixed(2));
+  }
+}`,
+            explanation: `<p>Este programa simula uma compra parcelada com juros compostos, mostrando o valor de cada parcela e o saldo devedor após cada pagamento.</p>
+                        <p>O algoritmo funciona da seguinte forma:</p>
+                        <ol>
+                            <li>Solicita ao usuário três informações: o valor total da compra, a taxa de juros por parcela e o número de parcelas desejadas.</li>
+                            <li>Converte as entradas em números e realiza a validação para garantir que são valores válidos.</li>
+                            <li>Converte a taxa de juros de percentual para decimal (dividindo por 100).</li>
+                            <li>Calcula o valor final da compra com juros compostos usando a fórmula: <code>ValorFinal = ValorCompra * (1 + taxa)^numParcelas</code>.</li>
+                            <li>Calcula o valor fixo de cada parcela dividindo o valor final pelo número de parcelas.</li>
+                            <li>Utiliza um loop <code>for</code> para simular o pagamento de cada parcela e calcular o saldo devedor restante após cada pagamento.</li>
+                        </ol>
+                        <p>Esta implementação aplica o conceito de juros compostos, onde os juros incidem não só sobre o valor principal, mas também sobre os juros acumulados dos períodos anteriores. Isso resulta em um valor final maior do que em um cálculo com juros simples.</p>
+                        <p>O programa permite visualizar como o saldo devedor diminui a cada parcela paga, proporcionando uma visão clara do processo de amortização da dívida.</p>`,
+            trace: [
+              {
+                step: 1,
+                call: "Entrada de dados",
+                valorCompraInput: "1000",
+                taxaInput: "2",
+                parcelasInput: "12",
+                explanation: "O usuário informa o valor total da compra (R$ 1000), a taxa de juros (2% por parcela) e o número de parcelas (12)"
+              },
+              {
+                step: 2,
+                call: "Conversão e validação",
+                valorCompra: 1000,
+                taxaPercent: 2,
+                numParcelas: 12,
+                explanation: "Os valores de entrada são convertidos para números e validados"
+              },
+              {
+                step: 3,
+                call: "Cálculo da taxa decimal",
+                taxa: 0.02,
+                explanation: "A taxa percentual é convertida para decimal: 2% = 0.02"
+              },
+              {
+                step: 4,
+                call: "Cálculo do valor final com juros",
+                calculo: "1000 * (1 + 0.02)^12",
+                valorFinal: 1268.24,
+                explanation: "Calculamos o valor final com juros compostos: 1000 * (1.02)^12 = 1268.24"
+              },
+              {
+                step: 5,
+                call: "Cálculo do valor da parcela",
+                calculo: "1268.24 / 12",
+                valorParcela: 105.69,
+                explanation: "Calculamos o valor fixo de cada parcela: 1268.24 / 12 = 105.69"
+              },
+              {
+                step: 6,
+                call: "Exibição dos detalhes da compra",
+                saida: "=== DESAFIO 04: Compra Parcelada com Juros ===\n\nValor total da compra: R$ 1000.00\nTaxa de juros por parcela: 2.00%\nQuantidade de parcelas: 12\nValor total com juros: R$ 1268.24\nValor de cada parcela: R$ 105.69\n",
+                explanation: "Exibimos os detalhes da compra, incluindo o valor total com juros e o valor de cada parcela"
+              },
+              {
+                step: 7,
+                call: "Loop for - primeira iteração",
+                i: 1,
+                calculo: "1268.24 - (105.69 * 1)",
+                saldoRestante: 1162.55,
+                saida: "Parcela 1: R$ 105.69 | Saldo restante: R$ 1162.55",
+                explanation: "Calculamos o saldo restante após o pagamento da primeira parcela: 1268.24 - 105.69 = 1162.55"
+              },
+              {
+                step: 8,
+                call: "Loop for - segunda iteração",
+                i: 2,
+                calculo: "1268.24 - (105.69 * 2)",
+                saldoRestante: 1056.86,
+                saida: "Parcela 2: R$ 105.69 | Saldo restante: R$ 1056.86",
+                explanation: "Calculamos o saldo restante após o pagamento da segunda parcela: 1268.24 - 211.38 = 1056.86"
+              },
+              {
+                step: 9,
+                call: "Loop for - terceira iteração",
+                i: 3,
+                calculo: "1268.24 - (105.69 * 3)",
+                saldoRestante: 951.17,
+                saida: "Parcela 3: R$ 105.69 | Saldo restante: R$ 951.17",
+                explanation: "Calculamos o saldo restante após o pagamento da terceira parcela: 1268.24 - 317.07 = 951.17"
+              },
+              {
+                step: 10,
+                call: "Loop for - iterações subsequentes",
+                explanation: "O processo continua até a 12ª parcela, calculando o saldo restante após cada pagamento"
+              },
+              {
+                step: 11,
+                call: "Loop for - última iteração",
+                i: 12,
+                calculo: "1268.24 - (105.69 * 12)",
+                saldoRestante: 0.00,
+                saida: "Parcela 12: R$ 105.69 | Saldo restante: R$ 0.00",
+                explanation: "Após o pagamento da última parcela, o saldo devedor chega a zero (pode haver pequenas diferenças devido a arredondamentos)"
               }
             ]
           }
